@@ -41,8 +41,8 @@ def remove_outliers(df):
     # Identify subset of data containing outliers in `tenure`
     outliers = df[(df['tenure'] > upper_limit) | (df['tenure'] < lower_limit)]
 
-    # Count how many rows in the data contain outliers in `tenure`
-    print("Number of rows in the data containing outliers in `tenure`:", len(outliers))
+    # Select rows without outliers in `tenure` and save resulting dataframe in a new variable
+    df = df[(df['tenure'] >= lower_limit) & (df['tenure'] <= upper_limit)]
     
     return(df)
 
