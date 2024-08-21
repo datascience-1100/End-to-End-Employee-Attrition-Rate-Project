@@ -10,7 +10,7 @@ input_file_path = "c:/Users/Subha/OneDrive/Desktop/HR_capstone_dataset.csv"
 df = pd.read_csv(input_file_path)
 
 # Split the data into training and testing sets
-train_data, test_data = train_test_split(df, test_size=0.2, random_state=42)
+train_data, test_data = train_test_split(df, test_size=0.4, random_state=42)
 
 # Define the path for saving the processed data
 data_path = os.path.join("data", "raw")
