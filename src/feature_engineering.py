@@ -1,26 +1,77 @@
 import numpy as np
 import pandas as pd
 import os
+import logging
 
-train_data=pd.read_csv('./data/processed/train_processed.csv')
-test_data= pd.read_csv('./data/processed/test_processed.csv')
+# Set up logging
+logger = logging.getLogger('data_processing')
+logger.setLevel(logging.DEBUG)
 
-# One-hot encode the categorical variables as needed and save resulting dataframe in a new variable
+# Create handlers
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
+
+file_handler = logging.FileHandler('data_processing.log')
+file_handler.setLevel(logging.ERROR)
+
+# Create formatter and add it to handlers
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+file_handler.setFormatter(formatter)
+
+# Add handlers to the logger
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
+
+def load_data(file_path):
+    try:
+        data = pd.read_csv(file_path)
+        return data
+    except Exception as e:
+        logger.error("File is not found")
+        raise
+
 def ohe(df):
-  df = pd.get_dummies(df, prefix=['salary', 'dept'], columns = ['salary', 'department'], drop_first=False)
-  return df
+    try:
+        df = pd.get_dummies(df, prefix=['salary', 'dept'], columns=['salary', 'department'], drop_first=False)
+        logger.info("Successfully applied one-hot encoding")
+        return df
+    except Exception as e:
+        logger.error("Could not apply ohe")
+        raise
 
-train_featured_data= ohe(train_data)
-test_featured_data= ohe(test_data)
+def save_data(df, file_path):
+    try:
+        df.to_csv(file_path, index=False)
+    except Exception as e:
+        logger.error(f"Error saving data to {file_path}: {e}")
+        raise
 
-# Define the path for saving the processed data
-data_path = os.path.join("data", "featured")
+def process_data():
+    try:
+        # Define file paths
+        train_file_path = './data/processed/train_processed.csv'
+        test_file_path = './data/processed/test_processed.csv'
+        data_path = os.path.join("data", "featured")
+        
+        # Load data
+        train_data = load_data(train_file_path)
+        test_data = load_data(test_file_path)
+        
+        # Apply one-hot encoding
+        train_featured_data = ohe(train_data)
+        test_featured_data = ohe(test_data)
+        
+        # Create the directory if it does not exist
+        os.makedirs(data_path, exist_ok=True)
+        
+        # Save processed data
+        save_data(train_featured_data, os.path.join(data_path, 'train_featured.csv'))
+        save_data(test_featured_data, os.path.join(data_path, 'test_featured.csv'))
+        
+    except Exception as e:
+        logger.error(f"An error occurred during data processing: {e}")
+        raise
 
-# Create the directory if it does not exist
-os.makedirs(data_path, exist_ok=True)
-
-# Save the training and testing data to CSV files
-train_featured_data.to_csv(os.path.join(data_path, 'train_featured.csv'))
-test_featured_data.to_csv(os.path.join(data_path, 'test_featured.csv'))
-
-
+if __name__ == "__main__":
+    process_data()
