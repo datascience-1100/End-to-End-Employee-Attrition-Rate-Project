@@ -4,20 +4,40 @@ import os
 from sklearn.model_selection import train_test_split
 import yaml
 
+import logging
+
+logger= logging. getLogger('data_ingestion')
+logger.setLevel('DEBUG')
+
+console_handler= logging.StreamHandler()
+console_handler.setLevel('DEBUG')
+
+file_handler=logging.FileHandler('errors.log')
+file_handler.setLevel('ERROR')
+
+formatter=logging.Formatter('%(asctime)s - %(name)s -%(levelname)s - %(message)s' )
+console_handler.setFormatter(formatter)
+file_handler.setFormatter(formatter)
+
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
+
+
 def load_params(params_path: str) -> float:
     try:
         with open(params_path, 'r') as file:
             params = yaml.safe_load(file)
             test_size = params['data_ingestion']['test_size']
+            logger.debug("test_size received")
         return test_size
     except FileNotFoundError:
-        print(f"Error: The file '{params_path}' was not found.")
+        logger.error('File is Not Found')
         raise
     except KeyError as e:
-        print(f"Error: Key '{e}' not found in the YAML file.")
+        logger.error('keyerror')
         raise
     except yaml.YAMLError as e:
-        print(f"Error: Failed to parse YAML file. {e}")
+        logger.error('YAML error')
         raise
 
 # Path to the input CSV file
@@ -26,13 +46,7 @@ def read_data(url: str) -> pd.DataFrame:
         df = pd.read_csv(url)
         return df
     except FileNotFoundError:
-        print(f"Error: The file '{url}' was not found.")
-        raise
-    except pd.errors.EmptyDataError:
-        print(f"Error: The file '{url}' is empty.")
-        raise
-    except pd.errors.ParserError:
-        print(f"Error: Failed to parse the CSV file '{url}'.")
+        logger.error('File is not found')
         raise
 
 # Define the path for saving the processed data
@@ -44,7 +58,7 @@ def save_data(data_path: str, train_data: pd.DataFrame, test_data: pd.DataFrame)
         train_data.to_csv(os.path.join(data_path, 'train.csv'), index=False)
         test_data.to_csv(os.path.join(data_path, 'test.csv'), index=False)
     except IOError as e:
-        print(f"Error: Failed to save data to path '{data_path}'. {e}")
+        logger.error('Input-Output Error')
         raise
 
 def main():
@@ -56,7 +70,7 @@ def main():
         data_path = os.path.join("data", "raw")
         save_data(data_path, train_data, test_data)
     except Exception as e:
-        print(f"An error occurred during the data processing pipeline: {e}")
-
+        logger.error('File unavailable')
+        
 if __name__ == "__main__":
     main()
