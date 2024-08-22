@@ -2,6 +2,9 @@ import numpy as np
 import pandas as pd
 import os
 from sklearn.model_selection import train_test_split
+import yaml
+
+test_size=yaml.safe_load(open('params.yaml', 'r'))['data_ingestion']['test_size']
 
 # Path to the input CSV file
 input_file_path = "c:/Users/Subha/OneDrive/Desktop/HR_capstone_dataset.csv"
@@ -10,7 +13,7 @@ input_file_path = "c:/Users/Subha/OneDrive/Desktop/HR_capstone_dataset.csv"
 df = pd.read_csv(input_file_path)
 
 # Split the data into training and testing sets
-train_data, test_data = train_test_split(df, test_size=0.3, random_state=42)
+train_data, test_data = train_test_split(df, test_size=test_size, random_state=42)
 
 # Define the path for saving the processed data
 data_path = os.path.join("data", "raw")

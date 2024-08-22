@@ -1,0 +1,7 @@
+data_ingestion:
+ test_size: 0.2
+
+model_building:
+ max_iter: 500
+
+  
