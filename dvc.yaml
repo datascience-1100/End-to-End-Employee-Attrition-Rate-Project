@@ -29,3 +29,14 @@ stages:
     - src/model_building.py
     outs:
     - model.pkl
+
+  model_evaluation:
+    cmd: python src/model_evaluation.py
+    deps:
+    - data/raw
+    - src/data_preprocessing.py
+    - src/feature_engineering.py
+    - src/model_building.py
+    - src/model_evaluation.py
+    metrics:
+    - metrics.json

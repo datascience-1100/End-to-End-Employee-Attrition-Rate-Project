@@ -3,3 +3,4 @@ myenv/
 /myenv
 /myenv/
 /model.pkl
+/metrics.json
