@@ -53,3 +53,28 @@ stages:
       md5: 32f7488e0c254b8cff4399cf34919210.dir
       size: 1338156
       nfiles: 2
+  model_building:
+    cmd: python src/model_building.py
+    deps:
+    - path: data/raw
+      hash: md5
+      md5: fe640ea906843a31a2e627d3ddb617b2.dir
+      size: 567723
+      nfiles: 2
+    - path: src/data_preprocessing.py
+      hash: md5
+      md5: 8e369744ccc705392ee6e58d20e767f3
+      size: 2167
+    - path: src/feature_engineering.py
+      hash: md5
+      md5: ce74b31733c9e56dde04dc8d926c7b3d
+      size: 883
+    - path: src/model_building.py
+      hash: md5
+      md5: a9e1cb0b0e6932a85e4aeda66fcc96b9
+      size: 1064
+    outs:
+    - path: model.pkl
+      hash: md5
+      md5: 4b049a2f8dbf882b42f4e2cb0c974aee
+      size: 1279
