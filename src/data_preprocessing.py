@@ -2,69 +2,80 @@ import numpy as np
 import pandas as pd
 import os
 
-train_data=pd.read_csv('./data/raw/train.csv')
-test_data= pd.read_csv('./data/raw/test.csv')
+# Function to read CSV files
+def read_csv(filepath: str) -> pd.DataFrame:
+    try:
+        df = pd.read_csv(filepath)
+        print(f"Successfully loaded {filepath}")
+        return df
+    except FileNotFoundError:
+        print(f"Error: The file '{filepath}' was not found.")
+        raise
+    except pd.errors.EmptyDataError:
+        print(f"Error: The file '{filepath}' is empty.")
+        raise
+    except pd.errors.ParserError:
+        print(f"Error: Failed to parse the CSV file '{filepath}'.")
+        raise
 
-print('Ok')
+# Function to rename columns
+def rename_columns(df: pd.DataFrame) -> pd.DataFrame:
+    column_mapping = {
+        'Work_accident': 'work_accident',
+        'average_montly_hours': 'average_monthly_hours',
+        'time_spend_company': 'tenure',
+        'Department': 'department'
+    }
+    return df.rename(columns=column_mapping)
 
-def rename_columns(df):
-    
-  df = df.rename(columns={'Work_accident': 'work_accident',
-                          'average_montly_hours': 'average_monthly_hours',
-                          'time_spend_company': 'tenure',
-                          'Department': 'department'})
-  return df
+# Function to drop duplicates
+def remove_duplicates(df: pd.DataFrame) -> pd.DataFrame:
+    return df.drop_duplicates(keep='first')
 
-
-# Drop duplicates and save resulting dataframe in a new variable as needed
-def remove_duplicates(df):
- df = df.drop_duplicates(keep='first')
- return df
-
-
-def remove_outliers(df):
-# Compute the 25th percentile value in `tenure`
-    percentile25 = df['tenure'].quantile(0.25)
-
-    # Compute the 75th percentile value in `tenure`
-    percentile75 = df['tenure'].quantile(0.75)
-
-    # Compute the interquartile range in `tenure`
+# Function to compute IQR and define outlier limits
+def compute_iqr_limits(df: pd.DataFrame, column: str) -> tuple:
+    percentile25 = df[column].quantile(0.25)
+    percentile75 = df[column].quantile(0.75)
     iqr = percentile75 - percentile25
-
-    # Define the upper limit and lower limit for non-outlier values in `tenure`
     upper_limit = percentile75 + 1.5 * iqr
     lower_limit = percentile25 - 1.5 * iqr
-    print("Lower limit:", lower_limit)
-    print("Upper limit:", upper_limit)
+    return lower_limit, upper_limit
 
-    # Identify subset of data containing outliers in `tenure`
-    outliers = df[(df['tenure'] > upper_limit) | (df['tenure'] < lower_limit)]
+# Function to remove outliers based on the IQR method
+def remove_outliers(df: pd.DataFrame, column: str) -> pd.DataFrame:
+    lower_limit, upper_limit = compute_iqr_limits(df, column)
+    return df[(df[column] >= lower_limit) & (df[column] <= upper_limit)]
 
-    # Select rows without outliers in `tenure` and save resulting dataframe in a new variable
-    df = df[(df['tenure'] >= lower_limit) & (df['tenure'] <= upper_limit)]
-    
-    return(df)
-
-def process_data(df):
+# Function to process the DataFrame by chaining the previous functions
+def process_data(df: pd.DataFrame) -> pd.DataFrame:
     df = rename_columns(df)
-    df = remove_outliers(df)
+    df = remove_outliers(df, 'tenure')
     df = remove_duplicates(df)
     return df
 
-    
-    
-train_processed_data= process_data(train_data)
-test_processed_data= process_data(test_data)
+# Function to save processed data to CSV
+def save_data(df: pd.DataFrame, data_path: str, filename: str) -> None:
+    try:
+        os.makedirs(data_path, exist_ok=True)
+        file_path = os.path.join(data_path, filename)
+        df.to_csv(file_path, index=False)
+        print(f"Data saved to {file_path}")
+    except IOError as e:
+        print(f"Error: Failed to save data to '{file_path}'. {e}")
+        raise
 
-# Define the path for saving the processed data
-data_path = os.path.join("data", "processed")
+# Main function to execute the entire pipeline
+def main() -> None:
+    train_data = read_csv('./data/raw/train.csv')
+    test_data = read_csv('./data/raw/test.csv')
 
-# Create the directory if it does not exist
-os.makedirs(data_path, exist_ok=True)
+    train_processed_data = process_data(train_data)
+    test_processed_data = process_data(test_data)
 
-# Save the training and testing data to CSV files
-train_processed_data.to_csv(os.path.join(data_path, 'train_processed.csv'))
-test_processed_data.to_csv(os.path.join(data_path, 'test_processed.csv'))
+    data_path = os.path.join("data", "processed")
 
+    save_data(train_processed_data, data_path, 'train_processed.csv')
+    save_data(test_processed_data, data_path, 'test_processed.csv')
 
+if __name__ == "__main__":
+    main()
