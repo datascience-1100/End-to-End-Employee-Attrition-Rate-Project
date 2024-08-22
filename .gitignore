@@ -4,3 +4,5 @@ myenv/
 /myenv/
 /model.pkl
 /metrics.json
+/data
+
