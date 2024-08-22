@@ -74,8 +74,8 @@ stages:
       size: 2375
     - path: src/model_building.py
       hash: md5
-      md5: aa53deddcb4103d140441b2562817376
-      size: 1021
+      md5: 235a387449ce141249b756c984ea6773
+      size: 3550
     params:
       params.yaml:
         model_building.max_iter: 500
@@ -102,14 +102,14 @@ stages:
       size: 2375
     - path: src/model_building.py
       hash: md5
-      md5: aa53deddcb4103d140441b2562817376
-      size: 1021
+      md5: 235a387449ce141249b756c984ea6773
+      size: 3550
     - path: src/model_evaluation.py
       hash: md5
-      md5: 71376fc7f6abd14c6a147cc056f32983
-      size: 1387
+      md5: 201efc037a47fefe2dc84f28281c72dc
+      size: 3800
     outs:
     - path: metrics.json
       hash: md5
-      md5: d44f618e13b9a667432773ff1eb42bbf
-      size: 112
+      md5: c38e70c99d7b46def7768fcb6a4cc064
+      size: 77
