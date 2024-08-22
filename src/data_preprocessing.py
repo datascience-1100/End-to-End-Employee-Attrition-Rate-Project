@@ -1,22 +1,37 @@
 import numpy as np
 import pandas as pd
 import os
+import logging
+
+logger= logging. getLogger('data_ingestion')
+logger.setLevel('DEBUG')
+
+console_handler= logging.StreamHandler()
+console_handler.setLevel('DEBUG')
+
+file_handler=logging.FileHandler('errors.log')
+file_handler.setLevel('ERROR')
+
+formatter=logging.Formatter('%(asctime)s - %(name)s -%(levelname)s - %(message)s' )
+console_handler.setFormatter(formatter)
+file_handler.setFormatter(formatter)
+
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
+
 
 # Function to read CSV files
 def read_csv(filepath: str) -> pd.DataFrame:
     try:
         df = pd.read_csv(filepath)
-        print(f"Successfully loaded {filepath}")
         return df
     except FileNotFoundError:
-        print(f"Error: The file '{filepath}' was not found.")
+        logger.error('File is Not Found')
         raise
     except pd.errors.EmptyDataError:
-        print(f"Error: The file '{filepath}' is empty.")
+        logger.error('File is Empty')
         raise
-    except pd.errors.ParserError:
-        print(f"Error: Failed to parse the CSV file '{filepath}'.")
-        raise
+
 
 # Function to rename columns
 def rename_columns(df: pd.DataFrame) -> pd.DataFrame:
