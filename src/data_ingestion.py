@@ -4,17 +4,17 @@ import os
 from sklearn.model_selection import train_test_split
 import yaml
 
-def load_params(params_path):
+def load_params(params_path : str) -> float:
    test_size=yaml.safe_load(open(params_path, 'r'))['data_ingestion']['test_size']
    return test_size
 
 # Path to the input CSV file
-def read_data(url):
+def read_data(url: str)->pd.DataFrame:
    df = pd.read_csv(url)
    return df
 
 # Define the path for saving the processed data
-def save_data(data_path, train_data,test_data):
+def save_data(data_path: str, train_data: pd.DataFrame,test_data: pd.DataFrame)-> None:
     # Create the directory if it does not exist
     os.makedirs(data_path, exist_ok=True)
     # Save the training and testing data to CSV files
