@@ -9,11 +9,11 @@ stages:
       size: 2441
     params:
       params.yaml:
-        data_ingestion.test_size: 0.2
+        data_ingestion.test_size: 0.1
     outs:
     - path: data/raw
       hash: md5
-      md5: 96a898ebc9c81831d4951d865dac1698.dir
+      md5: 4896005195b7f3b9e2f05de46953e3a0.dir
       size: 567723
       nfiles: 2
   data_preprocessing:
@@ -21,7 +21,7 @@ stages:
     deps:
     - path: data/raw
       hash: md5
-      md5: 96a898ebc9c81831d4951d865dac1698.dir
+      md5: 4896005195b7f3b9e2f05de46953e3a0.dir
       size: 567723
       nfiles: 2
     - path: src/data_preprocessing.py
@@ -31,15 +31,15 @@ stages:
     outs:
     - path: data/processed
       hash: md5
-      md5: 152d1923d8c28ed24fba3a486631b190.dir
-      size: 448816
+      md5: 90d528584a378b844849e27a361df18d.dir
+      size: 437443
       nfiles: 2
   feature_engineering:
     cmd: python src/feature_engineering.py
     deps:
     - path: data/raw
       hash: md5
-      md5: 96a898ebc9c81831d4951d865dac1698.dir
+      md5: 4896005195b7f3b9e2f05de46953e3a0.dir
       size: 567723
       nfiles: 2
     - path: src/data_preprocessing.py
@@ -53,15 +53,15 @@ stages:
     outs:
     - path: data/featured
       hash: md5
-      md5: 436660ba43dce7223187ce1fd6149a48.dir
-      size: 1196624
+      md5: 036e52ac3898d4b41154d1cd72ca3295.dir
+      size: 1166013
       nfiles: 2
   model_building:
     cmd: python src/model_building.py
     deps:
     - path: data/raw
       hash: md5
-      md5: 96a898ebc9c81831d4951d865dac1698.dir
+      md5: 4896005195b7f3b9e2f05de46953e3a0.dir
       size: 567723
       nfiles: 2
     - path: src/data_preprocessing.py
@@ -82,14 +82,14 @@ stages:
     outs:
     - path: model.pkl
       hash: md5
-      md5: ce07126666a5851e0aeffe644b5317ed
+      md5: 25eb228cb172c63612e0b2b33a077cf1
       size: 1279
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
     - path: data/raw
       hash: md5
-      md5: 96a898ebc9c81831d4951d865dac1698.dir
+      md5: 4896005195b7f3b9e2f05de46953e3a0.dir
       size: 567723
       nfiles: 2
     - path: src/data_preprocessing.py
@@ -111,5 +111,5 @@ stages:
     outs:
     - path: metrics.json
       hash: md5
-      md5: d44f618e13b9a667432773ff1eb42bbf
-      size: 112
+      md5: 0c68744e97a766305341c05e844b02a0
+      size: 114
