@@ -74,20 +74,24 @@ stages:
       size: 2375
     - path: src/model_building.py
       hash: md5
-      md5: 54c01577f8071f5889e1326eea4b3102
-      size: 4014
+      md5: c7d7c8de249142b81a4684a91ba29eac
+      size: 6019
     params:
       params.yaml:
-        model_building.max_iter: 10
+        model_building.max_iter: 100
     outs:
     - path: decision_tree_model.pkl
       hash: md5
-      md5: df565e3110cad4b9cc18db6c4c889db0
-      size: 19340
+      md5: 54096168e9eb3bd2d6f8bdf7a9818c87
+      size: 4940
     - path: logistic_regression_model.pkl
       hash: md5
-      md5: 4fdf8aa5b7f262b5b0c17f47aa70c8bc
+      md5: eabfdda805fc9fc3244ac01e68ab46f6
       size: 1278
+    - path: xgbclassifiermodel.pkl
+      hash: md5
+      md5: 0085e2cc90e37ec2fb6bfc476793a57e
+      size: 15127
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
@@ -106,14 +110,22 @@ stages:
       size: 2375
     - path: src/model_building.py
       hash: md5
-      md5: 54c01577f8071f5889e1326eea4b3102
-      size: 4014
+      md5: c7d7c8de249142b81a4684a91ba29eac
+      size: 6019
     - path: src/model_evaluation.py
       hash: md5
-      md5: 85123f9a3b76d6e9d7b7610bc654febe
-      size: 5018
+      md5: 1f16ac72fba173ca6d6f5e073be4c9fe
+      size: 5685
     outs:
-    - path: metrics.json
+    - path: metrics_decision_tree.json
       hash: md5
-      md5: d8136190a4e6bc0356d3c4702aa939d2
-      size: 105
+      md5: cb1ee998ef780d319be6466530a34859
+      size: 149
+    - path: metrics_logistic.json
+      hash: md5
+      md5: 3cbc9ad92b9994da8170c434e40f07ad
+      size: 151
+    - path: metrics_xgboost.json
+      hash: md5
+      md5: cd323925c4181d9b4100eeadf0786d6d
+      size: 150

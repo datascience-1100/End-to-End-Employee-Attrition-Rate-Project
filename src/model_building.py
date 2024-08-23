@@ -1,12 +1,14 @@
 import numpy as np
 import pandas as pd
 import os
-from sklearn.model_selection import train_test_split
 import pickle
-from sklearn.linear_model import LogisticRegression
-from sklearn.tree import DecisionTreeClassifier
 import yaml
 import logging
+import mlflow
+import mlflow.sklearn
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+import xgboost as xgb
 
 # Set up logging
 logger = logging.getLogger('model_training')
@@ -33,8 +35,11 @@ def load_params(params_path):
         params = yaml.safe_load(open(params_path, 'r'))
         decision_tree_max_depth= params['model_building']['decision_tree_max_depth']
         max_iter = params['model_building']['max_iter']
+        learning_rate = params['model_building']['learning_rate']
+        max_depth=params['model_building']['max_depth']
+        n_estimators = params['model_building']['n_estimators']
         logger.info("Successfully loaded parameters")
-        return max_iter, decision_tree_max_depth
+        return max_iter, decision_tree_max_depth, learning_rate, n_estimators, max_depth
     
     except Exception as e:
         logger.error(f"Error loading parameters: {e}")
@@ -52,24 +57,62 @@ def load_data(file_path):
 
 def train_logistic_regression_model(X, y, max_iter):
     try:
-        logger.info("Training logistic regression model")
-        clf = LogisticRegression(random_state=42, max_iter=max_iter).fit(X, y)        
-        logger.info("Model training completed successfully")
-        return clf
+        with mlflow.start_run(run_name="Logistic_Regression"):
+            logger.info("Training logistic regression model")
+            clf = LogisticRegression(random_state=42, max_iter=max_iter).fit(X, y)
+            
+            # Log parameters
+            mlflow.log_param("max_iter", max_iter)
+            
+            # Log the model
+            mlflow.sklearn.log_model(clf, "model")
+            
+            logger.info("Logistic Regression model training completed successfully")
+            return clf
     
     except Exception as e:
-        logger.error(f"Error training model: {e}")
+        logger.error(f"Error training logistic regression model: {e}")
         raise
     
 def train_decision_tree(X, y, decision_tree_max_depth):
     try:
-        decision_tree_clf = DecisionTreeClassifier(max_depth=decision_tree_max_depth, random_state=42).fit(X, y)
-        logger.info("Model decision training completed successfully")
-        return decision_tree_clf
+        with mlflow.start_run(run_name="Decision_Tree"):
+            logger.info("Training decision tree model")
+            decision_tree_clf = DecisionTreeClassifier(max_depth=decision_tree_max_depth, random_state=42).fit(X, y)
+            
+            # Log parameters
+            mlflow.log_param("decision_tree_max_depth", decision_tree_max_depth)
+            
+            # Log the model
+            mlflow.sklearn.log_model(decision_tree_clf, "model")
+            
+            logger.info("Decision Tree model training completed successfully")
+            return decision_tree_clf
     
     except Exception as e:
-        logger.error(f"Error training model: {e}")
+        logger.error(f"Error training decision tree model: {e}")
         raise
+
+def model_xgboost(X, y, learning_rate, max_depth, n_estimators):
+    try:
+        with mlflow.start_run(run_name="XGBoost"):
+            logger.info("Training XGBoost model")
+            xgb_clf = xgb.XGBClassifier(learning_rate=learning_rate, max_depth=max_depth, n_estimators=n_estimators, random_state=42).fit(X, y)
+            
+            # Log parameters
+            mlflow.log_param("learning_rate", learning_rate)
+            mlflow.log_param("max_depth", max_depth)
+            mlflow.log_param("n_estimators", n_estimators)
+            
+            # Log the model
+            mlflow.sklearn.log_model(xgb_clf, "model")
+            
+            logger.info("XGBoost model training completed successfully")
+            return xgb_clf
+    
+    except Exception as e:
+        logger.error(f"Error training XGBoost model: {e}")
+        raise         
 
 def save_model(model, model_path):
     try:
@@ -80,8 +123,6 @@ def save_model(model, model_path):
     except Exception as e:
         logger.error(f"Error saving model: {e}")
         raise
-    # Example usage
-       
 
 def process_model_training():
     try:
@@ -90,9 +131,10 @@ def process_model_training():
         train_file_path = './data/featured/train_featured.csv'
         logistic_model_path = 'logistic_regression_model.pkl'
         decision_tree_model_path = 'decision_tree_model.pkl'
+        xgb_model_path = 'xgbclassifiermodel.pkl'
         
         # Load parameters
-        max_iter, decision_tree_max_depth = load_params(params_path)
+        max_iter, decision_tree_max_depth, learning_rate, max_depth, n_estimators = load_params(params_path)
 
         # Load training data
         train_data = load_data(train_file_path)
@@ -101,18 +143,18 @@ def process_model_training():
         X_train = train_data.drop(columns=['left'])
         y_train = train_data['left']
         
-        # Train the model
+        # Train the models
         clf = train_logistic_regression_model(X_train, y_train, max_iter)
         decision_tree_clf = train_decision_tree(X_train, y_train, decision_tree_max_depth)
+        xgb_clf = model_xgboost(X_train, y_train, learning_rate, max_depth, n_estimators)
         
-        # Save the trained model
-        save_model(clf, logistic_model_path )
+        # Save the trained models
+        save_model(clf, logistic_model_path)
         save_model(decision_tree_clf, decision_tree_model_path)
-        
-      
-        
+        save_model(xgb_clf, xgb_model_path)
+
     except Exception as e:
-        logger.error(f"An error occurred during model training process: {e}")
+        logger.error(f"An error occurred during the model training process: {e}")
         raise
 
 if __name__ == "__main__":

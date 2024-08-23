@@ -11,3 +11,7 @@ model
 
 /logistic_regression_model.pkl
 /decision_tree_model.pkl
+/xgbclassifiermodel.pkl
+/metrics_logistic.json
+/metrics_decision_tree.json
+/metrics_xgboost.json

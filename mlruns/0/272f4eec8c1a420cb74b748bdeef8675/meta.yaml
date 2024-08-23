@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Subha/OneDrive/Desktop/Emp%20Attrition%20Rate%20Project/mlruns/0/272f4eec8c1a420cb74b748bdeef8675/artifacts
+end_time: 1724395278024
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 272f4eec8c1a420cb74b748bdeef8675
+run_name: XGBoost
+run_uuid: 272f4eec8c1a420cb74b748bdeef8675
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724395274669
+status: 3
+tags: []
+user_id: Subha

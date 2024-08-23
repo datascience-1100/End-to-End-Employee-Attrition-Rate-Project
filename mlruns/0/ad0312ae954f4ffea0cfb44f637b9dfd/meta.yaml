@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/Subha/OneDrive/Desktop/Emp%20Attrition%20Rate%20Project/mlruns/0/ad0312ae954f4ffea0cfb44f637b9dfd/artifacts
+end_time: 1724395283565
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ad0312ae954f4ffea0cfb44f637b9dfd
+run_name: languid-donkey-649
+run_uuid: ad0312ae954f4ffea0cfb44f637b9dfd
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1724395282989
+status: 3
+tags: []
+user_id: Subha

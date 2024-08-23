@@ -52,10 +52,10 @@ def load_data(file_path):
         logger.error(f"Error loading data from {file_path}: {e}")
         raise
 
-def evaluate_model(model, X_test, y_test):
+def evaluate_model(model, X_test, y_test, model_name):
     try:
         with mlflow.start_run():
-            logger.info("Evaluating the model on the test set")
+            logger.info(f"Evaluating the {model_name} model on the test set")
             y_pred = model.predict(X_test)
             
             # Calculate metrics
@@ -65,27 +65,27 @@ def evaluate_model(model, X_test, y_test):
             f1 = f1_score(y_test, y_pred)
             
             # Log metrics to MLflow
-            mlflow.log_metric("accuracy", accuracy)
-            mlflow.log_metric("precision", precision)
-            mlflow.log_metric("recall", recall)
-            mlflow.log_metric("f1_score", f1)
+            mlflow.log_metric(f"{model_name}_accuracy", accuracy)
+            mlflow.log_metric(f"{model_name}_precision", precision)
+            mlflow.log_metric(f"{model_name}_recall", recall)
+            mlflow.log_metric(f"{model_name}_f1_score", f1)
             
             # Log confusion matrix as an artifact
             conf_matrix = confusion_matrix(y_test, y_pred)
             plt.figure(figsize=(10,7))
             sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues")
-            plt.title("Confusion Matrix")
+            plt.title(f"{model_name} Confusion Matrix")
             plt.ylabel('Actual label')
             plt.xlabel('Predicted label')
             
             # Save confusion matrix plot
-            conf_matrix_path = "confusion_matrix.png"
+            conf_matrix_path = f"{model_name}_confusion_matrix.png"
             plt.savefig(conf_matrix_path)
             plt.close()  # Close the plot to avoid memory issues
             
             # Log classification report
             report = classification_report(y_test, y_pred, output_dict=True)
-            report_path = "classification_report.json"
+            report_path = f"{model_name}_classification_report.json"
             with open(report_path, 'w') as f:
                 json.dump(report, f, indent=4)
             
@@ -98,17 +98,18 @@ def evaluate_model(model, X_test, y_test):
     except Exception as e:
         logger.error(f"Error during model evaluation: {e}")
         raise
-
 def process_model_evaluation():
     try:
         # Define file paths
         logistic_model_path = 'logistic_regression_model.pkl'
-        decision_tree_model_path ='decision_tree_model.pkl'
+        decision_tree_model_path = 'decision_tree_model.pkl'
+        xgboost_model_path = 'xgbclassifiermodel.pkl'
         test_file_path = './data/featured/test_featured.csv'
         
-        # Load the model and test data
+        # Load the models and test data
         clf = load_model(logistic_model_path)
         decision_tree_clf = load_model(decision_tree_model_path)
+        xgboost_clf = load_model(xgboost_model_path)
 
         test_data = load_data(test_file_path)
         
@@ -116,24 +117,27 @@ def process_model_evaluation():
         X_test = test_data.drop(columns=['left'])
         y_test = test_data['left']
         
-        # Evaluate the model
-        metrics = evaluate_model(clf, X_test, y_test)
-        metrics1 = evaluate_model(decision_tree_clf , X_test, y_test)
-       
+        # Evaluate the models
+        metrics_logistic = evaluate_model(clf, X_test, y_test, 'Logistic_Regression')
+        metrics_decision_tree = evaluate_model(decision_tree_clf, X_test, y_test, 'Decision_Tree')
+        metrics_xgboost = evaluate_model(xgboost_clf, X_test, y_test, 'XGBoost')
         
-        # Optionally, save evaluation metrics locally (if needed)
-        metrics_file_path = 'metrics.json'
-        with open(metrics_file_path, 'w') as file:
-            json.dump(metrics, file, indent=4)
-        logger.info("Metrics is created")
+        # Save evaluation metrics locally (if needed)
+        metrics_file_path_logistic = 'metrics_logistic.json'
+        with open(metrics_file_path_logistic, 'w') as file:
+            json.dump(metrics_logistic, file, indent=4)
+        logger.info("Logistic Regression metrics saved")
 
-                
-        metrics_file_path = 'metrics1.json'
-        with open(metrics_file_path, 'w') as file:
-            json.dump(metrics1, file, indent=4)  
-        logger.info("Metrics1 is created")
+        metrics_file_path_decision_tree = 'metrics_decision_tree.json'
+        with open(metrics_file_path_decision_tree, 'w') as file:
+            json.dump(metrics_decision_tree, file, indent=4)  
+        logger.info("Decision Tree metrics saved")
 
-        
+        metrics_file_path_xgboost = 'metrics_xgboost.json'
+        with open(metrics_file_path_xgboost, 'w') as file:
+            json.dump(metrics_xgboost, file, indent=4)  
+        logger.info("XGBoost metrics saved")
+
     except Exception as e:
         logger.error(f"An error occurred during the model evaluation process: {e}")
         raise
