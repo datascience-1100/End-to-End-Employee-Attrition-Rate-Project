@@ -4,7 +4,11 @@ import os
 import json
 import pickle
 import logging
+import mlflow
+import mlflow.sklearn
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, confusion_matrix, classification_report
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Set up logging
 logger = logging.getLogger('model_evaluation')
@@ -40,7 +44,6 @@ def load_data(file_path):
     try:
         logger.info(f"Loading test data from {file_path}")
         data = pd.read_csv(file_path)
-        logger.info("Test data loaded successfully")
         return data
     except Exception as e:
         logger.error(f"Error loading data from {file_path}: {e}")
@@ -48,57 +51,72 @@ def load_data(file_path):
 
 def evaluate_model(model, X_test, y_test):
     try:
-        logger.info("Evaluating the model on the test set")
-        y_pred = model.predict(X_test)
-        
-        accuracy = accuracy_score(y_test, y_pred)
-        precision = precision_score(y_test, y_pred)
-        recall = recall_score(y_test, y_pred)
-        
-        logger.info("Model evaluation completed successfully")
-        
-        return {
-            'accuracy': accuracy,
-            'precision': precision,
-            'recall': recall
-        }
+        with mlflow.start_run():
+            logger.info("Evaluating the model on the test set")
+            y_pred = model.predict(X_test)
+            
+            # Calculate metrics
+            accuracy = accuracy_score(y_test, y_pred)
+            precision = precision_score(y_test, y_pred)
+            recall = recall_score(y_test, y_pred)
+            f1 = f1_score(y_test, y_pred)
+            
+            # Log metrics to MLflow
+            mlflow.log_metric("accuracy", accuracy)
+            mlflow.log_metric("precision", precision)
+            mlflow.log_metric("recall", recall)
+            mlflow.log_metric("f1_score", f1)
+            
+            # Log confusion matrix as an artifact
+            conf_matrix = confusion_matrix(y_test, y_pred)
+            plt.figure(figsize=(10,7))
+            sns.heatmap(conf_matrix, annot=True, fmt="d", cmap="Blues")
+            plt.title("Confusion Matrix")
+            plt.ylabel('Actual label')
+            plt.xlabel('Predicted label')
+            
+            # Save confusion matrix plot
+            conf_matrix_path = "confusion_matrix.png"
+            plt.savefig(conf_matrix_path)
+            plt.close()  # Close the plot to avoid memory issues
+            
+            # Log classification report
+            report = classification_report(y_test, y_pred, output_dict=True)
+            report_path = "classification_report.json"
+            with open(report_path, 'w') as f:
+                json.dump(report, f, indent=4)
+            
+            return {
+                'accuracy': accuracy,
+                'precision': precision,
+                'recall': recall,
+                'f1_score': f1
+            }
     except Exception as e:
         logger.error(f"Error during model evaluation: {e}")
-        raise
-
-def save_metrics(metrics, file_path):
-    try:
-        logger.info(f"Saving evaluation metrics to {file_path}")
-        with open(file_path, 'w') as file:
-            json.dump(metrics, file, indent=4)
-        logger.info(f"Metrics saved successfully to {file_path}")
-    except Exception as e:
-        logger.error(f"Error saving metrics to {file_path}: {e}")
         raise
 
 def process_model_evaluation():
     try:
         # Define file paths
-        model_path = 'model.pkl'
+        logistic_model_path = 'logistic_regression_model.pkl'
         test_file_path = './data/featured/test_featured.csv'
-        metrics_file_path = 'metrics.json'
         
         # Load the model and test data
-        clf = load_model(model_path)
+        clf = load_model(logistic_model_path)
         test_data = load_data(test_file_path)
         
         # Select the features and outcome variable
-        X_test = test_data[['satisfaction_level', 'last_evaluation', 'number_project', 'average_monthly_hours', 'tenure', 
-                            'work_accident', 'promotion_last_5years', 'salary_high', 'salary_low', 'salary_medium',
-                            'dept_IT', 'dept_RandD', 'dept_accounting', 'dept_hr', 'dept_management', 'dept_marketing',
-                            'dept_product_mng', 'dept_sales', 'dept_support', 'dept_technical']]
+        X_test = test_data.drop(columns=['left'])
         y_test = test_data['left']
         
         # Evaluate the model
         metrics = evaluate_model(clf, X_test, y_test)
         
-        # Save evaluation metrics
-        save_metrics(metrics, metrics_file_path)
+        # Optionally, save evaluation metrics locally (if needed)
+        metrics_file_path = 'metrics.json'
+        with open(metrics_file_path, 'w') as file:
+            json.dump(metrics, file, indent=4)
         
     except Exception as e:
         logger.error(f"An error occurred during the model evaluation process: {e}")
