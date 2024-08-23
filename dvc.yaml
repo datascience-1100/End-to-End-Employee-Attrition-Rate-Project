@@ -40,13 +40,17 @@ stages:
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
-    - data/raw
-    - src/data_preprocessing.py
-    - src/feature_engineering.py
-    - src/model_building.py
-    - src/model_evaluation.py
-    metrics:
-    - metrics_logistic.json
-    - metrics_decision_tree.json
-    - metrics_xgboost.json
-    - metrics_svm.json
+      - src/model_evaluation.py
+      - data/featured/test_featured.csv
+      - models/logistic_regression_model.pkl
+      - models/decision_tree_model.pkl
+      - models/xgboost_model.pkl
+      - models/svm_model.pkl
+    outs:
+      - metrics_logistic.json
+      - metrics_decision_tree.json
+      - metrics_xgboost.json
+      - metrics_svm.json
+      - model_evaluation.log
+    params:
+      - params.yaml
