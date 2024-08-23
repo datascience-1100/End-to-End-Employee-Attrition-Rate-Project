@@ -65,7 +65,6 @@ def train_decision_tree(X, y, decision_tree_max_depth):
     try:
         decision_tree_clf = DecisionTreeClassifier(max_depth=decision_tree_max_depth, random_state=42).fit(X, y)
         logger.info("Model decision training completed successfully")
-
         return decision_tree_clf
     
     except Exception as e:
@@ -77,10 +76,12 @@ def save_model(model, model_path):
         logger.info(f"Saving model to {model_path}")
         with open(model_path, 'wb') as f:
             pickle.dump(model, f)
-        logger.info(f"Model saved successfully to {model}")
+        logger.info(f"Model saved successfully to {model_path}")
     except Exception as e:
         logger.error(f"Error saving model: {e}")
         raise
+    # Example usage
+       
 
 def process_model_training():
     try:
@@ -107,6 +108,8 @@ def process_model_training():
         # Save the trained model
         save_model(clf, logistic_model_path )
         save_model(decision_tree_clf, decision_tree_model_path)
+        
+      
         
     except Exception as e:
         logger.error(f"An error occurred during model training process: {e}")

@@ -32,7 +32,8 @@ stages:
     params:
     - model_building.max_iter
     outs:
-    - model.pkl
+    - logistic_regression_model.pkl
+    - decision_tree_model.pkl
 
   model_evaluation:
     cmd: python src/model_evaluation.py

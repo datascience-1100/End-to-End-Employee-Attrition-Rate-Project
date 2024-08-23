@@ -5,4 +5,9 @@ myenv/
 /model.pkl
 /metrics.json
 /data
+model/
+/model
+model
 
+/logistic_regression_model.pkl
+/decision_tree_model.pkl

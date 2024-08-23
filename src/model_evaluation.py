@@ -39,6 +39,9 @@ def load_model(model_path):
     except Exception as e:
         logger.error(f"Error loading model from {model_path}: {e}")
         raise
+    models = load_models('models.pkl')
+    clf = models['logistic_regression']
+    decision_tree_clf = models['decision_tree']
 
 def load_data(file_path):
     try:
@@ -100,10 +103,13 @@ def process_model_evaluation():
     try:
         # Define file paths
         logistic_model_path = 'logistic_regression_model.pkl'
+        decision_tree_model_path ='decision_tree_model.pkl'
         test_file_path = './data/featured/test_featured.csv'
         
         # Load the model and test data
         clf = load_model(logistic_model_path)
+        decision_tree_clf = load_model(decision_tree_model_path)
+
         test_data = load_data(test_file_path)
         
         # Select the features and outcome variable
@@ -112,11 +118,21 @@ def process_model_evaluation():
         
         # Evaluate the model
         metrics = evaluate_model(clf, X_test, y_test)
+        metrics1 = evaluate_model(decision_tree_clf , X_test, y_test)
+       
         
         # Optionally, save evaluation metrics locally (if needed)
         metrics_file_path = 'metrics.json'
         with open(metrics_file_path, 'w') as file:
             json.dump(metrics, file, indent=4)
+        logger.info("Metrics is created")
+
+                
+        metrics_file_path = 'metrics1.json'
+        with open(metrics_file_path, 'w') as file:
+            json.dump(metrics1, file, indent=4)  
+        logger.info("Metrics1 is created")
+
         
     except Exception as e:
         logger.error(f"An error occurred during the model evaluation process: {e}")
