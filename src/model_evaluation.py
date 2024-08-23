@@ -1,6 +1,5 @@
 import numpy as np
 import pandas as pd
-import os
 import json
 import pickle
 import logging
@@ -39,9 +38,6 @@ def load_model(model_path):
     except Exception as e:
         logger.error(f"Error loading model from {model_path}: {e}")
         raise
-    models = load_models('models.pkl')
-    clf = models['logistic_regression']
-    decision_tree_clf = models['decision_tree']
 
 def load_data(file_path):
     try:
@@ -98,18 +94,21 @@ def evaluate_model(model, X_test, y_test, model_name):
     except Exception as e:
         logger.error(f"Error during model evaluation: {e}")
         raise
+
 def process_model_evaluation():
     try:
         # Define file paths
         logistic_model_path = 'logistic_regression_model.pkl'
         decision_tree_model_path = 'decision_tree_model.pkl'
-        xgboost_model_path = 'xgbclassifiermodel.pkl'
+        xgboost_model_path = 'xgboost_model.pkl'
+        svm_model_path = 'svm_model.pkl'
         test_file_path = './data/featured/test_featured.csv'
         
         # Load the models and test data
         clf = load_model(logistic_model_path)
         decision_tree_clf = load_model(decision_tree_model_path)
         xgboost_clf = load_model(xgboost_model_path)
+        svm_clf = load_model(svm_model_path)
 
         test_data = load_data(test_file_path)
         
@@ -121,8 +120,9 @@ def process_model_evaluation():
         metrics_logistic = evaluate_model(clf, X_test, y_test, 'Logistic_Regression')
         metrics_decision_tree = evaluate_model(decision_tree_clf, X_test, y_test, 'Decision_Tree')
         metrics_xgboost = evaluate_model(xgboost_clf, X_test, y_test, 'XGBoost')
+        metrics_svm = evaluate_model(svm_clf, X_test, y_test, 'SVM')
         
-        # Save evaluation metrics locally (if needed)
+        # Save evaluation metrics locally
         metrics_file_path_logistic = 'metrics_logistic.json'
         with open(metrics_file_path_logistic, 'w') as file:
             json.dump(metrics_logistic, file, indent=4)
@@ -137,6 +137,11 @@ def process_model_evaluation():
         with open(metrics_file_path_xgboost, 'w') as file:
             json.dump(metrics_xgboost, file, indent=4)  
         logger.info("XGBoost metrics saved")
+
+        metrics_file_path_svm = 'metrics_svm.json'
+        with open(metrics_file_path_svm, 'w') as file:
+            json.dump(metrics_svm, file, indent=4)  
+        logger.info("SVM metrics saved")
 
     except Exception as e:
         logger.error(f"An error occurred during the model evaluation process: {e}")

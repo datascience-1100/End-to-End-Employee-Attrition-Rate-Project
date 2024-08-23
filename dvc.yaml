@@ -34,7 +34,8 @@ stages:
     outs:
     - logistic_regression_model.pkl
     - decision_tree_model.pkl
-    - xgbclassifiermodel.pkl
+    - xgboost_model.pkl
+    - svm_model.pkl
 
   model_evaluation:
     cmd: python src/model_evaluation.py
@@ -48,3 +49,4 @@ stages:
     - metrics_logistic.json
     - metrics_decision_tree.json
     - metrics_xgboost.json
+    - metrics_svm.json
