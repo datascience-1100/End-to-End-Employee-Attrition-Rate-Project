@@ -136,10 +136,10 @@ def process_model_training():
         # Define file paths
         params_path = 'params.yaml'
         train_file_path = './data/featured/train_featured.csv'
-        logistic_model_path = 'logistic_regression_model.pkl'
-        decision_tree_model_path = 'decision_tree_model.pkl'
-        xgboost_model_path = 'xgboost_model.pkl'
-        svm_model_path = 'svm_model.pkl'
+        logistic_model_path = 'model/logistic_regression_model.pkl'
+        decision_tree_model_path = 'model/decision_tree_model.pkl'
+        xgboost_model_path = 'model/xgboost_model.pkl'
+        svm_model_path = 'model/svm_model.pkl'
         
         # Load parameters
         max_iter, decision_tree_max_depth, learning_rate, max_depth, n_estimators, svm_c = load_params(params_path)

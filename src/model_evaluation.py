@@ -98,10 +98,10 @@ def evaluate_model(model, X_test, y_test, model_name):
 def process_model_evaluation():
     try:
         # Define file paths
-        logistic_model_path = 'logistic_regression_model.pkl'
-        decision_tree_model_path = 'decision_tree_model.pkl'
-        xgboost_model_path = 'xgboost_model.pkl'
-        svm_model_path = 'svm_model.pkl'
+        logistic_model_path = 'model/logistic_regression_model.pkl'
+        decision_tree_model_path = 'model/decision_tree_model.pkl'
+        xgboost_model_path = 'model/xgboost_model.pkl'
+        svm_model_path = 'model/svm_model.pkl'
         test_file_path = './data/featured/test_featured.csv'
         
         # Load the models and test data
@@ -123,22 +123,22 @@ def process_model_evaluation():
         metrics_svm = evaluate_model(svm_clf, X_test, y_test, 'SVM')
         
         # Save evaluation metrics locally
-        metrics_file_path_logistic = 'metrics_logistic.json'
+        metrics_file_path_logistic = 'outputs/metrics_logistic.json'
         with open(metrics_file_path_logistic, 'w') as file:
             json.dump(metrics_logistic, file, indent=4)
         logger.info("Logistic Regression metrics saved")
 
-        metrics_file_path_decision_tree = 'metrics_decision_tree.json'
+        metrics_file_path_decision_tree = 'outputs/metrics_decision_tree.json'
         with open(metrics_file_path_decision_tree, 'w') as file:
             json.dump(metrics_decision_tree, file, indent=4)  
         logger.info("Decision Tree metrics saved")
 
-        metrics_file_path_xgboost = 'metrics_xgboost.json'
+        metrics_file_path_xgboost = 'outputs/metrics_xgboost.json'
         with open(metrics_file_path_xgboost, 'w') as file:
             json.dump(metrics_xgboost, file, indent=4)  
         logger.info("XGBoost metrics saved")
 
-        metrics_file_path_svm = 'metrics_svm.json'
+        metrics_file_path_svm = 'outputs/metrics_svm.json'
         with open(metrics_file_path_svm, 'w') as file:
             json.dump(metrics_svm, file, indent=4)  
         logger.info("SVM metrics saved")

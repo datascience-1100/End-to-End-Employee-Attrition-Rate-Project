@@ -32,25 +32,34 @@ stages:
     params:
     - model_building.max_iter
     outs:
-    - logistic_regression_model.pkl
-    - decision_tree_model.pkl
-    - xgboost_model.pkl
-    - svm_model.pkl
+    - model/logistic_regression_model.pkl
+    - model/decision_tree_model.pkl
+    - model/xgboost_model.pkl
+    - model/svm_model.pkl
 
   model_evaluation:
     cmd: python src/model_evaluation.py
     deps:
       - src/model_evaluation.py
       - data/featured/test_featured.csv
-      - models/logistic_regression_model.pkl
-      - models/decision_tree_model.pkl
-      - models/xgboost_model.pkl
-      - models/svm_model.pkl
+      - model/logistic_regression_model.pkl
+      - model/decision_tree_model.pkl
+      - model/xgboost_model.pkl
+      - model/svm_model.pkl
     outs:
-      - metrics_logistic.json
-      - metrics_decision_tree.json
-      - metrics_xgboost.json
-      - metrics_svm.json
-      - model_evaluation.log
-    params:
-      - params.yaml
+      - outputs/metrics_logistic.json
+      - outputs/metrics_decision_tree.json
+      - outputs/metrics_xgboost.json
+      - outputs/metrics_svm.json
+
+  best_model:
+      cmd: python src/best_model.py
+      deps:
+        - src/best_model.py
+        - outputs/metrics_logistic.json
+        - outputs/metrics_decision_tree.json
+        - outputs/metrics_xgboost.json
+        - outputs/metrics_svm.json
+      outs:
+        - best_model.pkl
+     
