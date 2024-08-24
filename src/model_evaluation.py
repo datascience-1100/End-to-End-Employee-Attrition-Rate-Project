@@ -9,6 +9,11 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+#mlflow with dagshub
+import dagshub
+dagshub.init(repo_owner='datascience-1100', repo_name='End-to-End-Employee-Attrition-Rate-Project', mlflow=True)
+mlflow.set_tracking_uri("https://dagshub.com/datascience-1100/End-to-End-Employee-Attrition-Rate-Project.mlflow")
+
 # Set up logging
 logger = logging.getLogger('model_evaluation')
 logger.setLevel(logging.DEBUG)
@@ -75,13 +80,13 @@ def evaluate_model(model, X_test, y_test, model_name):
             plt.xlabel('Predicted label')
             
             # Save confusion matrix plot
-            conf_matrix_path = f"{model_name}_confusion_matrix.png"
+            conf_matrix_path = f"outputs/confusion_matrix/{model_name}_confusion_matrix.png"
             plt.savefig(conf_matrix_path)
             plt.close()  # Close the plot to avoid memory issues
             
             # Log classification report
             report = classification_report(y_test, y_pred, output_dict=True)
-            report_path = f"{model_name}_classification_report.json"
+            report_path = f"outputs/classification_report/{model_name}_classification_report.json"
             with open(report_path, 'w') as f:
                 json.dump(report, f, indent=4)
             

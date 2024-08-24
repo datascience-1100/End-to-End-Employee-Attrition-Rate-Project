@@ -12,6 +12,11 @@ from sklearn.svm import SVC
 import xgboost as xgb
 from sklearn.model_selection import GridSearchCV, cross_val_score
 
+#mlflow with dagshub
+import dagshub
+dagshub.init(repo_owner='datascience-1100', repo_name='End-to-End-Employee-Attrition-Rate-Project', mlflow=True)
+mlflow.set_tracking_uri("https://dagshub.com/datascience-1100/End-to-End-Employee-Attrition-Rate-Project.mlflow")
+
 # Set up logging
 logger = logging.getLogger('model_training')
 logger.setLevel(logging.DEBUG)

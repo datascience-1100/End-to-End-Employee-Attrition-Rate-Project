@@ -4,9 +4,9 @@ data_ingestion:
 
 model_building:
   max_iter: 100                # For Logistic Regression
-  decision_tree_max_depth: 5   # For Decision Tree
-  learning_rate: 0.1           # For XGBoost
-  max_depth: 3                 # For XGBoost
+  decision_tree_max_depth: [3, 5, 7]   # For Decision Tree
+  learning_rate: [0.1, 0.2]          # For XGBoost
+  max_depth: [3, 5, 7]                 # For XGBoost
   n_estimators: 100            # For XGBoost
   svm_c: 1.0                   # For SVM
 
