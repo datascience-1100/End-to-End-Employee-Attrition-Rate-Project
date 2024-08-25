@@ -12,10 +12,13 @@ from sklearn.svm import SVC
 import xgboost as xgb
 from sklearn.model_selection import GridSearchCV, cross_val_score
 
-#mlflow with dagshub
+# mlflow with dagshub
 import dagshub
 dagshub.init(repo_owner='datascience-1100', repo_name='End-to-End-Employee-Attrition-Rate-Project', mlflow=True)
 mlflow.set_tracking_uri("https://dagshub.com/datascience-1100/End-to-End-Employee-Attrition-Rate-Project.mlflow")
+
+# Enable MLflow autologging
+mlflow.sklearn.autolog()
 
 # Set up logging
 logger = logging.getLogger('model_training')
@@ -64,63 +67,46 @@ def load_data(file_path):
 
 def compare_models(X, y, logistic_param_grid, decision_tree_param_grid, xgboost_param_grid, svm_param_grid):
     try:
-        with mlflow.start_run(run_name="Model_Comparison"):
-            # Define the models with GridSearchCV
+        # Logistic Regression Experiment
+        mlflow.set_experiment('logistic_regression_experiment')
+        with mlflow.start_run():
             logistic_model = GridSearchCV(LogisticRegression(random_state=42), param_grid=logistic_param_grid, cv=5, n_jobs=-1)
-            decision_tree_model = GridSearchCV(DecisionTreeClassifier(random_state=42), param_grid=decision_tree_param_grid, cv=5, n_jobs=-1)
-            xgboost_model = GridSearchCV(xgb.XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss'), param_grid=xgboost_param_grid, cv=5, n_jobs=-1)
-            svm_model = GridSearchCV(SVC(random_state=42), param_grid=svm_param_grid, cv=5, n_jobs=-1)
-            
-            # Perform cross-validation for Logistic Regression
             logger.info("Performing cross-validation for Logistic Regression")
             logistic_scores = cross_val_score(logistic_model, X, y, cv=5, scoring='accuracy')
             logger.info(f"Logistic Regression Cross-Validation Accuracy: {logistic_scores.mean()} ± {logistic_scores.std()}")
+            logistic_model.fit(X, y)
 
-            # Perform cross-validation for Decision Tree
+        # Decision Tree Experiment
+        mlflow.set_experiment('decision_tree_experiment')
+        with mlflow.start_run():
+            decision_tree_model = GridSearchCV(DecisionTreeClassifier(random_state=42), param_grid=decision_tree_param_grid, cv=5, n_jobs=-1)
             logger.info("Performing cross-validation for Decision Tree")
             decision_tree_scores = cross_val_score(decision_tree_model, X, y, cv=5, scoring='accuracy')
             logger.info(f"Decision Tree Cross-Validation Accuracy: {decision_tree_scores.mean()} ± {decision_tree_scores.std()}")
+            decision_tree_model.fit(X, y)
 
-            # Perform cross-validation for XGBoost
+        # XGBoost Experiment
+        mlflow.set_experiment('xgboost_experiment')
+        with mlflow.start_run():
+            xgboost_model = GridSearchCV(xgb.XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss'), param_grid=xgboost_param_grid, cv=5, n_jobs=-1)
             logger.info("Performing cross-validation for XGBoost")
             xgboost_scores = cross_val_score(xgboost_model, X, y, cv=5, scoring='accuracy')
             logger.info(f"XGBoost Cross-Validation Accuracy: {xgboost_scores.mean()} ± {xgboost_scores.std()}")
+            xgboost_model.fit(X, y)
 
-            # Perform cross-validation for SVM
+        # SVM Experiment
+        mlflow.set_experiment('svm_experiment')
+        with mlflow.start_run():
+            svm_model = GridSearchCV(SVC(random_state=42), param_grid=svm_param_grid, cv=5, n_jobs=-1)
             logger.info("Performing cross-validation for SVM")
             svm_scores = cross_val_score(svm_model, X, y, cv=5, scoring='accuracy')
             logger.info(f"SVM Cross-Validation Accuracy: {svm_scores.mean()} ± {svm_scores.std()}")
-
-            # Fit the models on the entire dataset
-            logger.info("Fitting Logistic Regression model on entire dataset")
-            logistic_model.fit(X, y)
-            logger.info("Fitting Decision Tree model on entire dataset")
-            decision_tree_model.fit(X, y)
-            logger.info("Fitting XGBoost model on entire dataset")
-            xgboost_model.fit(X, y)
-            logger.info("Fitting SVM model on entire dataset")
             svm_model.fit(X, y)
-            
-            # Log the best parameters and scores for each model
-            mlflow.log_param("logistic_best_params", logistic_model.best_params_)
-            mlflow.log_param("decision_tree_best_params", decision_tree_model.best_params_)
-            mlflow.log_param("xgboost_best_params", xgboost_model.best_params_)
-            mlflow.log_param("svm_best_params", svm_model.best_params_)
-            mlflow.log_metric("logistic_cv_accuracy", logistic_scores.mean())
-            mlflow.log_metric("decision_tree_cv_accuracy", decision_tree_scores.mean())
-            mlflow.log_metric("xgboost_cv_accuracy", xgboost_scores.mean())
-            mlflow.log_metric("svm_cv_accuracy", svm_scores.mean())
-            
-            # Log the models
-            mlflow.sklearn.log_model(logistic_model.best_estimator_, "logistic_regression_model")
-            mlflow.sklearn.log_model(decision_tree_model.best_estimator_, "decision_tree_model")
-            mlflow.sklearn.log_model(xgboost_model.best_estimator_, "xgboost_model")
-            mlflow.sklearn.log_model(svm_model.best_estimator_, "svm_model")
-            
-            logger.info("Model comparison completed successfully")
 
-            return (logistic_model.best_estimator_, decision_tree_model.best_estimator_, 
-                    xgboost_model.best_estimator_, svm_model.best_estimator_)
+        logger.info("Model comparison completed successfully")
+
+        return (logistic_model.best_estimator_, decision_tree_model.best_estimator_, 
+                xgboost_model.best_estimator_, svm_model.best_estimator_)
 
     except Exception as e:
         logger.error(f"Error comparing models: {e}")

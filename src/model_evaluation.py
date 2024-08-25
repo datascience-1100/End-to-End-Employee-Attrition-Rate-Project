@@ -9,7 +9,10 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-#mlflow with dagshub
+# Enable MLflow autologging
+mlflow.sklearn.autolog()
+
+# mlflow with dagshub
 import dagshub
 dagshub.init(repo_owner='datascience-1100', repo_name='End-to-End-Employee-Attrition-Rate-Project', mlflow=True)
 mlflow.set_tracking_uri("https://dagshub.com/datascience-1100/End-to-End-Employee-Attrition-Rate-Project.mlflow")
@@ -53,8 +56,9 @@ def load_data(file_path):
         logger.error(f"Error loading data from {file_path}: {e}")
         raise
 
-def evaluate_model(model, X_test, y_test, model_name):
+def evaluate_model(model, X_test, y_test, model_name, experiment_name):
     try:
+        mlflow.set_experiment(experiment_name)
         with mlflow.start_run():
             logger.info(f"Evaluating the {model_name} model on the test set")
             y_pred = model.predict(X_test)
@@ -64,13 +68,7 @@ def evaluate_model(model, X_test, y_test, model_name):
             precision = precision_score(y_test, y_pred)
             recall = recall_score(y_test, y_pred)
             f1 = f1_score(y_test, y_pred)
-            
-            # Log metrics to MLflow
-            mlflow.log_metric(f"{model_name}_accuracy", accuracy)
-            mlflow.log_metric(f"{model_name}_precision", precision)
-            mlflow.log_metric(f"{model_name}_recall", recall)
-            mlflow.log_metric(f"{model_name}_f1_score", f1)
-            
+                      
             # Log confusion matrix as an artifact
             conf_matrix = confusion_matrix(y_test, y_pred)
             plt.figure(figsize=(10,7))
@@ -122,10 +120,10 @@ def process_model_evaluation():
         y_test = test_data['left']
         
         # Evaluate the models
-        metrics_logistic = evaluate_model(clf, X_test, y_test, 'Logistic_Regression')
-        metrics_decision_tree = evaluate_model(decision_tree_clf, X_test, y_test, 'Decision_Tree')
-        metrics_xgboost = evaluate_model(xgboost_clf, X_test, y_test, 'XGBoost')
-        metrics_svm = evaluate_model(svm_clf, X_test, y_test, 'SVM')
+        metrics_logistic = evaluate_model(clf, X_test, y_test, 'Logistic_Regression', 'Logistic_Regression_Evaluation')
+        metrics_decision_tree = evaluate_model(decision_tree_clf, X_test, y_test, 'Decision_Tree', 'Decision_Tree_Evaluation')
+        metrics_xgboost = evaluate_model(xgboost_clf, X_test, y_test, 'XGBoost', 'XGBoost_Evaluation')
+        metrics_svm = evaluate_model(svm_clf, X_test, y_test, 'SVM', 'SVM_Evaluation')
         
         # Save evaluation metrics locally
         metrics_file_path_logistic = 'outputs/metrics_logistic.json'
