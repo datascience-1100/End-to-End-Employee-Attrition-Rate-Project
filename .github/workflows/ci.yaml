@@ -16,14 +16,14 @@ jobs:
     
     strategy:
       matrix:
-        python-version: [3.8, 3.9]  # You can adjust the Python versions as needed
+        python-version: [3.10, 3.9]  # You can adjust the Python versions as needed
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
     
     - name: Set up Python
-      uses: actions/setup-python@v4
+      uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
     
@@ -32,10 +32,9 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
     
-    - name: Run linting
+    - name: Runpipeline
       run: |
-        pip install flake8
-        flake8 .
+       dvc repro
     
     
     
