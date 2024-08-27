@@ -3,7 +3,7 @@ name: CI
 on:
   push:
     branches:
-      - main  # Change to the branch you want to build on
+      - main  
 
 jobs:
   build:
@@ -11,8 +11,8 @@ jobs:
 
     strategy:
       matrix:
-        python-version: [3.8, 3.9, 3.10]  # List of Python versions to test
-        os: [ubuntu-latest, windows-latest, macos-latest]  # List of OS to test
+        python-version: [3.8, 3.9, 3.10]  
+        os: [ubuntu-latest, windows-latest]  
 
     steps:
     - name: Checkout code
