@@ -9,9 +9,6 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Enable MLflow autologging
-mlflow.sklearn.autolog()
-
 # mlflow with dagshub
 import dagshub
 dagshub.init(repo_owner='datascience-1100', repo_name='End-to-End-Employee-Attrition-Rate-Project', mlflow=True)

@@ -23,3 +23,4 @@ mlruns/
 /model_evaluation.log
 /xgboost_best_model.pkl
 /best_model.pkl
+/registered_model_version.txt
