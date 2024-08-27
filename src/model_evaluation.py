@@ -86,7 +86,7 @@ def evaluate_model(model, X_test, y_test, model_name, experiment_name):
             report = classification_report(y_test, y_pred, output_dict=True)
             report_path = f"outputs/classification_report/{model_name}_classification_report.json"
             with open(report_path, 'w') as f:
-                json.dump(report, f, indent=4)
+                json.dump(report, f, indent=3)
             
             return {
                 'accuracy': accuracy,
