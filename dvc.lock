@@ -161,8 +161,8 @@ stages:
       size: 150
     - path: src/best_model.py
       hash: md5
-      md5: f06989705c46ec5de509bdfbd1ff16b1
-      size: 3687
+      md5: c7bd966f2d19d92aae11fc529e1f9ef1
+      size: 5548
     outs:
     - path: best_model.pkl
       hash: md5

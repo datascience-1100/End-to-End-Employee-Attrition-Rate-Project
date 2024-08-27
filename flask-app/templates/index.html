@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Attrition Prediction</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group button {
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #218838;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Employee Attrition Prediction</h1>
+        <form action="/submit" method="post">
+            <div class="form-group">
+                <label for="satisfaction_level">Satisfaction Level:</label>
+                <input type="text" id="satisfaction_level" name="satisfaction_level" required>
+            </div>
+            <div class="form-group">
+                <label for="last_evaluation">Last Evaluation:</label>
+                <input type="text" id="last_evaluation" name="last_evaluation" required>
+            </div>
+            <div class="form-group">
+                <label for="number_project">Number of Projects:</label>
+                <input type="text" id="number_project" name="number_project" required>
+            </div>
+            <div class="form-group">
+                <label for="average_monthly_hours">Average Monthly Hours:</label>
+                <input type="text" id="average_monthly_hours" name="average_monthly_hours" required>
+            </div>
+            <div class="form-group">
+                <label for="time_spend_company">Time Spent in Company (Years):</label>
+                <input type="text" id="time_spend_company" name="time_spend_company" required>
+            </div>
+            <div class="form-group">
+                <label for="work_accident">Work Accident (0/1):</label>
+                <input type="text" id="work_accident" name="work_accident" required>
+            </div>
+            <div class="form-group">
+                <label for="promotion_last_5years">Promotion in Last 5 Years (0/1):</label>
+                <input type="text" id="promotion_last_5years" name="promotion_last_5years" required>
+            </div>
+            <div class="form-group">
+                <label for="department">Department:</label>
+                <select id="department" name="department" required>
+                    <option value="IT">IT</option>
+                    <option value="RandD">RandD</option>
+                    <option value="accounting">Accounting</option>
+                    <option value="hr">HR</option>
+                    <option value="management">Management</option>
+                    <option value="marketing">Marketing</option>
+                    <option value="product_mng">Product Management</option>
+                    <option value="sales">Sales</option>
+                    <option value="support">Support</option>
+                    <option value="technical">Technical</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="salary">Salary:</label>
+                <select id="salary" name="salary" required>
+                    <option value="high">High</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+        {% if prediction_text %}
+        <div class="result">
+            {{ prediction_text }}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
