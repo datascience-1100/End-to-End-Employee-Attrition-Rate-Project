@@ -44,14 +44,15 @@ def load_model(model_path):
         logger.error(f"Error loading model from {model_path}: {e}")
         raise
 
-def register_model(run_id, model_name, model_path):
+def register_model(run_id, model_name, model_path, stage):
     """
-    Registers a model in the MLflow Model Registry.
+    Registers a model in the MLflow Model Registry and transitions its stage.
     
     Parameters:
     run_id (str): The ID of the MLflow run where the model artifact is logged.
     model_name (str): The name under which to register the model in the Model Registry.
     model_path (str): The path to the model artifact within the run's artifacts.
+    stage (str): The stage to transition the model to (e.g., "Staging", "Production").
     
     Returns:
     model_version (str): The version of the registered model.
@@ -61,8 +62,16 @@ def register_model(run_id, model_name, model_path):
         model_uri = f"runs:/{run_id}/{model_path}"
         result = mlflow.register_model(model_uri, model_name)
         
+        # Transition the model to the specified stage
+        client = mlflow.tracking.MlflowClient()
+        client.transition_model_version_stage(
+            name=model_name,
+            version=result.version,
+            stage=stage
+        )
+        
         logger.info(f"Model registered with name: {model_name}, URI: {model_uri}")
-        logger.info(f"Model version: {result.version}")
+        logger.info(f"Model version: {result.version} transitioned to stage: {stage}")
         
         return result.version
 
@@ -70,7 +79,7 @@ def register_model(run_id, model_name, model_path):
         logger.error(f"Error registering model: {e}")
         raise
 
-def save_best_model(best_model_name, run_id):
+def save_best_model(best_model_name, run_id, stage):
     model_path = f"model/{best_model_name.lower()}_model.pkl"
     best_model_path = "best_model.pkl"
     
@@ -83,8 +92,8 @@ def save_best_model(best_model_name, run_id):
         # Log the best model artifact to MLflow
         mlflow.log_artifact(best_model_path)
         
-        # Register the best model using the run_id
-        model_version = register_model(run_id, best_model_name, best_model_path)
+        # Register the best model using the run_id and transition its stage
+        model_version = register_model(run_id, best_model_name, best_model_path, stage)
         logger.info(f"Registered model version: {model_version}")
         
     except Exception as e:
@@ -107,7 +116,13 @@ def save_run_id(run_id, file_path="run_id.json"):
         logger.error(f"Error saving run ID to {file_path}: {e}")
         raise
 
-def process_best_model_selection():
+def process_best_model_selection(stage="Staging"):
+    """
+    Process to select the best model based on F1 score and register it in MLflow Model Registry.
+    
+    Parameters:
+    stage (str): The stage to transition the model to (e.g., "Staging", "Production").
+    """
     try:
         # Start an MLflow run
         with mlflow.start_run(run_name="Best_Model_Selection") as run:
@@ -140,12 +155,12 @@ def process_best_model_selection():
             log_param("best_model", best_model_name)
             log_metric("best_model_f1_score", best_model_f1_score)
             
-            # Save the best model and register it using the run_id
-            save_best_model(best_model_name, run_id)
+            # Save the best model, register it using the run_id, and transition to the specified stage
+            save_best_model(best_model_name, run_id, stage)
 
     except Exception as e:
         logger.error(f"An error occurred during the best model selection process: {e}")
         raise
 
 if __name__ == "__main__":
-    process_best_model_selection()
+    process_best_model_selection(stage="Staging")  # Set to "Production" as needed
