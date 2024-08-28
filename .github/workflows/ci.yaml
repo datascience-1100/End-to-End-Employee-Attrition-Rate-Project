@@ -22,7 +22,6 @@ jobs:
         pip install -r requirements.txt
         pip install dvc
         pip install mlflow
-        pip install python-dotenv
 
     - name: DVC pipeline
       run:
