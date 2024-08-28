@@ -5,9 +5,23 @@ import logging
 import dagshub
 from mlflow import log_metric, log_param
 
-# Initialize Dagshub and set MLflow tracking URI
-dagshub.init(repo_owner='datascience-1100', repo_name='End-to-End-Employee-Attrition-Rate-Project', mlflow=True)
-mlflow.set_tracking_uri("https://dagshub.com/datascience-1100/End-to-End-Employee-Attrition-Rate-Project.mlflow")
+import os
+from dotenv import load_dotenv
+
+load_dotenv()  # Load environment variables from .env file
+
+dagshub_token = os.getenv("DAGSHUB_PAT")
+
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "datascience-1100"
+repo_name = "End-to-End-Employee-Attrition-Rate-Project"
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 
 # Set up logging
 logger = logging.getLogger('register_model')
