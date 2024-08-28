@@ -121,8 +121,8 @@ stages:
       size: 216304
     - path: src/model_evaluation.py
       hash: md5
-      md5: d45a5dd3767e06716ad529d23d8d76d4
-      size: 6372
+      md5: af5888e1d53104ebfd8a09313619dc7c
+      size: 6444
     outs:
     - path: outputs/metrics_decision_tree.json
       hash: md5
@@ -161,8 +161,8 @@ stages:
       size: 150
     - path: src/best_model.py
       hash: md5
-      md5: c9d3f09f52fb902ef3c97b862d96a95e
-      size: 4454
+      md5: b1e205ff198f77a48b7f47544e907310
+      size: 4526
     outs:
     - path: best_model.pkl
       hash: md5
@@ -177,10 +177,10 @@ stages:
       size: 216304
     - path: src/register_model.py
       hash: md5
-      md5: a723a2d28f78059329ea132f9e46eeb5
-      size: 4428
+      md5: 495d348ebe68e5b1f7c92628b6a04dcd
+      size: 4500
     outs:
     - path: registered_model_version.txt
       hash: md5
-      md5: eccbc87e4b5ce2fe28308fd9f2a7baf3
+      md5: a87ff679a2f3e71d9181a67b7542122c
       size: 1
