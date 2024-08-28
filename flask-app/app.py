@@ -4,11 +4,25 @@ import pandas as pd
 import numpy as np
 import mlflow
 import dagshub
+import os
 
-# Setup MLflow with DagsHub
-dagshub.init(repo_owner='datascience-1100', repo_name='End-to-End-Employee-Attrition-Rate-Project', mlflow=True)
-mlflow.set_tracking_uri("https://dagshub.com/datascience-1100/End-to-End-Employee-Attrition-Rate-Project.mlflow")
+from dotenv import load_dotenv
 
+load_dotenv()  # Load environment variables from .env file
+
+os.environ["DAGSHUB_PAT"] = "2e48be432fcecb47f9c9b2133e2468fb685366fa"
+
+dagshub_token = os.getenv("DAGSHUB_PAT")
+
+os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+dagshub_url = "https://dagshub.com"
+repo_owner = "datascience-1100"
+repo_name = "End-to-End-Employee-Attrition-Rate-Project"
+
+# Set up MLflow tracking URI
+mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
 # Load the model
 model_path = 'best_model.pkl'
 try:

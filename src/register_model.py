@@ -42,17 +42,7 @@ logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
 def register_model(run_id, model_name, model_path):
-    """
-    Registers a model in the MLflow Model Registry.
-
-    Parameters:
-    run_id (str): The ID of the MLflow run where the model artifact is logged.
-    model_name (str): The name under which to register the model in the Model Registry.
-    model_path (str): The path to the model artifact within the run's artifacts.
-
-    Returns:
-    model_version (str): The version of the registered model.
-    """
+    
     try:
         model_uri = f"runs:/{run_id}/{model_path}"
         result = mlflow.register_model(model_uri, model_name)
@@ -71,15 +61,7 @@ def register_model(run_id, model_name, model_path):
         raise
 
 def load_model(model_path):
-    """
-    Loads a model from a file.
-
-    Parameters:
-    model_path (str): The path to the model file.
-
-    Returns:
-    model: The loaded model.
-    """
+   
     try:
         with open(model_path, 'rb') as f:
             model = pickle.load(f)
@@ -89,13 +71,7 @@ def load_model(model_path):
         raise
 
 def save_model_artifact(model_path, artifact_path="model_artifact.pkl"):
-    """
-    Saves a model artifact to a file.
-
-    Parameters:
-    model_path (str): The path to the model file.
-    artifact_path (str): The path where the artifact will be saved.
-    """
+   
     try:
         model = load_model(model_path)
         with open(artifact_path, 'wb') as f:
@@ -106,12 +82,7 @@ def save_model_artifact(model_path, artifact_path="model_artifact.pkl"):
         raise
 
 def log_model_artifact(artifact_path):
-    """
-    Logs a model artifact to MLflow.
-
-    Parameters:
-    artifact_path (str): The path to the model artifact.
-    """
+    
     try:
         mlflow.log_artifact(artifact_path)
         logger.info(f"Model artifact logged to MLflow: {artifact_path}")

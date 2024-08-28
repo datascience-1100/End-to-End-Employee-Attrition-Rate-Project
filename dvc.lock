@@ -177,10 +177,10 @@ stages:
       size: 216304
     - path: src/register_model.py
       hash: md5
-      md5: 495d348ebe68e5b1f7c92628b6a04dcd
-      size: 4500
+      md5: 15a2604cd79e047d805a04ae7c95dd8b
+      size: 3607
     outs:
     - path: registered_model_version.txt
       hash: md5
-      md5: a87ff679a2f3e71d9181a67b7542122c
+      md5: 45c48cce2e2d7fbdea1afc51c7c6ad26
       size: 1

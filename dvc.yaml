@@ -73,4 +73,10 @@ stages:
       - src/register_model.py
     outs:
       - registered_model_version.txt
-    
+
+  deploy:
+    cmd: python flask-app/app.py
+    deps:
+      - best_model.pkl
+      - flask-app/app.py
+   
