@@ -23,6 +23,7 @@ jobs:
         pip install dvc
         pip install mlflow
         pip install --upgrade xgboost
+        pip install seaborn
 
     - name: Set up DagsHub credentials
       env:
