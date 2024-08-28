@@ -23,17 +23,13 @@ jobs:
         pip install dvc
         pip install mlflow
 
-    - name: Check for DAGSHUB_PAT
+    - name: Check environment variables
       run: |
-        if [ -z "${{ secrets.DAGSHUB_PAT }}" ]; then
-          echo "DAGSHUB_PAT is not set."
-          exit 1
-        else
-          echo "DAGSHUB_PAT is set."
-        fi
+        echo "DAGSHUB_PAT=${{ secrets.DAGSHUB_PAT }}"
 
     - name: Run DVC pipeline
       env:
         DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
       run: |
+        set -x  # Print each command before executing it
         dvc repro
