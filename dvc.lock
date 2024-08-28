@@ -74,15 +74,15 @@ stages:
       size: 2375
     - path: src/model_building.py
       hash: md5
-      md5: b688ba09045cc266f0331824c4165926
-      size: 7686
+      md5: ede6a4f1d6cdca7c91199e4359c0ddb7
+      size: 7751
     params:
       params.yaml:
         model_building.max_iter: 1000
     outs:
     - path: model/decision_tree_model.pkl
       hash: md5
-      md5: 639fd0635e7e84295b2aa8906924713c
+      md5: 1dc7a50e7449573834a00d7575102ba6
       size: 4940
     - path: model/logistic_regression_model.pkl
       hash: md5
@@ -105,7 +105,7 @@ stages:
       size: 388627
     - path: model/decision_tree_model.pkl
       hash: md5
-      md5: 639fd0635e7e84295b2aa8906924713c
+      md5: 1dc7a50e7449573834a00d7575102ba6
       size: 4940
     - path: model/logistic_regression_model.pkl
       hash: md5

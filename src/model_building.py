@@ -125,6 +125,7 @@ def compare_models(X, y, logistic_param_grid, decision_tree_param_grid, xgboost_
 def save_model(model, model_path):
     try:
         logger.info(f"Saving model to {model_path}")
+        os.makedirs(os.path.dirname(model_path), exist_ok=True)
         with open(model_path, 'wb') as f:
             pickle.dump(model, f)
         logger.info(f"Model saved successfully to {model_path}")
