@@ -63,7 +63,7 @@ def save_data(data_path: str, train_data: pd.DataFrame, test_data: pd.DataFrame)
 def main():
     try:
         test_size = load_params('params.yaml')
-        df = read_data("c:/Users/Subha/OneDrive/Desktop/HR_capstone_dataset.csv")
+        df = read_data("C:/Users/Subha/OneDrive/Desktop/Emp Attrition Rate Project/dataset/HR_capstone_dataset.csv")
         # Split the data into training and testing sets
         train_data, test_data = train_test_split(df, test_size=test_size, random_state=42)
         data_path = os.path.join("data", "raw")
