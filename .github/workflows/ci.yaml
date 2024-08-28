@@ -22,6 +22,7 @@ jobs:
         pip install -r requirements.txt
         pip install dvc
         pip install mlflow
+        pip install --upgrade xgboost
 
     - name: Set up DagsHub credentials
       env:
