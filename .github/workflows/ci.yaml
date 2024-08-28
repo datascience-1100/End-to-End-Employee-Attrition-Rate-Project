@@ -2,7 +2,7 @@ name: CI Pipeline
 
 on:
   push:
-    
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -23,8 +23,17 @@ jobs:
         pip install dvc
         pip install mlflow
 
-    - name: run pipeline
-      env:
-        DAGSHUB_PAT: ${{secrets.DAGSHUB_PAT}}
+    - name: Check for DAGSHUB_PAT
       run: |
-        dvc repro       
+        if [ -z "${{ secrets.DAGSHUB_PAT }}" ]; then
+          echo "DAGSHUB_PAT is not set."
+          exit 1
+        else
+          echo "DAGSHUB_PAT is set."
+        fi
+
+    - name: Run DVC pipeline
+      env:
+        DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
+      run: |
+        dvc repro
