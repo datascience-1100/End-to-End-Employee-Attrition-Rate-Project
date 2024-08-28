@@ -36,7 +36,8 @@ Steps and Deliverables:
 
  Version Control: 
  
-        Code versioned using GitHub, data versioned using DVC. A DVC pipeline was created to manage and reproduce the entire process.
+        Code versioned using GitHub, data versioned using DVC. 
+        A DVC pipeline was created to manage and reproduce the entire process.
         
  Model Registration:
  Best model registered in MLflow Model Registry, automated by model_registration.py.
