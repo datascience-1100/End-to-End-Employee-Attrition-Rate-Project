@@ -23,13 +23,24 @@ jobs:
         pip install dvc
         pip install mlflow
 
-    - name: Check environment variables
+    - name: Print environment variables
       run: |
         echo "DAGSHUB_PAT=${{ secrets.DAGSHUB_PAT }}"
+
+    - name: Print directory structure
+      run: |
+        ls -la
+        ls -la src
+        ls -la data
+
+    - name: Print Python version and environment
+      run: |
+        python --version
+        pip list
 
     - name: Run DVC pipeline
       env:
         DAGSHUB_PAT: ${{ secrets.DAGSHUB_PAT }}
       run: |
         set -x  # Print each command before executing it
-        dvc repro
+        dvc repro || { echo 'dvc repro failed'; exit 1; }
