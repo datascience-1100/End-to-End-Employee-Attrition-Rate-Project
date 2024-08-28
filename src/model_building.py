@@ -16,9 +16,9 @@ from dotenv import load_dotenv
 
 load_dotenv()  # Load environment variables from .env file
 
+os.environ["DAGSHUB_PAT"] = "2e48be432fcecb47f9c9b2133e2468fb685366fa"
 
 dagshub_token = os.getenv("DAGSHUB_PAT")
-
 
 os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
 os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
