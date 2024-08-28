@@ -23,7 +23,7 @@ jobs:
         pip install dvc
         pip install mlflow
 
-    - name: run piepeline
+    - name: run pipeline
       env:
         DAGSHUB_PAT: ${{secrets.DAGSHUB_PAT}}
       run: |
