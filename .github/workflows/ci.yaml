@@ -25,6 +25,6 @@ jobs:
 
     - name: run pipeline
       env:
-        EMPLOYEE ATTRITION PROJECT: ${{secrets.DAGSHUB_PAT}}
+        EMPLOYEEATTRITIONPROJECT: ${{secrets.DAGSHUB_PAT}}
       run: |
         dvc repro       
