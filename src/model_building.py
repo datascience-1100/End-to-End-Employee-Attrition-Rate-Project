@@ -98,7 +98,7 @@ def compare_models(X, y, logistic_param_grid, decision_tree_param_grid, xgboost_
         # XGBoost Experiment
         mlflow.set_experiment('xgboost_experiment')
         with mlflow.start_run():
-            xgboost_model = GridSearchCV(xgb.XGBClassifier(random_state=42, use_label_encoder=False, eval_metric='logloss'), param_grid=xgboost_param_grid, cv=5, n_jobs=-1)
+            xgboost_model = GridSearchCV(xgb.XGBClassifier(random_state=42, eval_metric='logloss'), param_grid=xgboost_param_grid, cv=5, n_jobs=-1)
             logger.info("Performing cross-validation for XGBoost")
             xgboost_scores = cross_val_score(xgboost_model, X, y, cv=5, scoring='accuracy')
             logger.info(f"XGBoost Cross-Validation Accuracy: {xgboost_scores.mean()} ± {xgboost_scores.std()}")
