@@ -1,4 +1,0 @@
-2024-08-27 17:34:50,815 - best_model - ERROR - Error saving the best model: name 'register_model' is not defined
-2024-08-27 17:34:51,341 - best_model - ERROR - An error occurred during the best model selection process: name 'register_model' is not defined
-2024-08-27 17:41:34,789 - best_model - ERROR - Error saving the best model: name 'register_model' is not defined
-2024-08-27 17:41:35,198 - best_model - ERROR - An error occurred during the best model selection process: name 'register_model' is not defined

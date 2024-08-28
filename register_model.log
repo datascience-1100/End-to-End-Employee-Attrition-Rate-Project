@@ -1,5 +1,0 @@
-2024-08-27 17:26:15,556 - register_model - ERROR - Error loading model from path/to/your/model.pkl: [Errno 2] No such file or directory: 'path/to/your/model.pkl'
-2024-08-27 17:26:15,557 - register_model - ERROR - Error saving model artifact: [Errno 2] No such file or directory: 'path/to/your/model.pkl'
-2024-08-27 17:26:15,562 - register_model - ERROR - An error occurred during model registration: [Errno 2] No such file or directory: 'path/to/your/model.pkl'
-2024-08-27 17:27:02,435 - register_model - ERROR - Error logging model artifact to MLflow: The configured tracking uri scheme: 'file' is invalid for use with the proxy mlflow-artifact scheme. The allowed tracking schemes are: {'https', 'http'}
-2024-08-27 17:27:02,462 - register_model - ERROR - An error occurred during model registration: The configured tracking uri scheme: 'file' is invalid for use with the proxy mlflow-artifact scheme. The allowed tracking schemes are: {'https', 'http'}
