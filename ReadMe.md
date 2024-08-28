@@ -34,9 +34,7 @@ Steps and Deliverables:
  Model Deployment: 
          Web application (app.py)  in flask framework for HR to predict employee attrition.
 
- Version Control: 
- 
-        Code versioned using GitHub, data versioned using DVC. 
+ Version Control: Code versioned using GitHub, data versioned using DVC. 
         A DVC pipeline was created to manage and reproduce the entire process.
         
  Model Registration:
