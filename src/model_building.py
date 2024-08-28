@@ -13,9 +13,9 @@ import xgboost as xgb
 from sklearn.model_selection import GridSearchCV, cross_val_score
 
 from dotenv import load_dotenv
-import mlflow
 
 load_dotenv()  # Load environment variables from .env file
+
 
 dagshub_token = os.getenv("DAGSHUB_PAT")
 
