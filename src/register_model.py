@@ -93,7 +93,7 @@ def log_model_artifact(artifact_path):
 def main():
     model_path = "best_model.pkl"
     artifact_path = "model_artifact.pkl"
-    model_name = "final_model"
+    model_name = "final-model"
 
     try:
         # Start an MLflow run

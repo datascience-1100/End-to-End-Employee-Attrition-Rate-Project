@@ -1,35 +1,47 @@
 from flask import Flask, request, render_template
-import pickle
-import pandas as pd
-import numpy as np
 import mlflow
-import dagshub
+import pandas as pd
 import os
+import logging
 
 from dotenv import load_dotenv
 
-load_dotenv()  # Load environment variables from .env file
+# Load environment variables from .env file
+load_dotenv()
 
-os.environ["DAGSHUB_PAT"] = "2e48be432fcecb47f9c9b2133e2468fb685366fa"
+# Set up logging
+logger = logging.getLogger('app')
+logger.setLevel(logging.DEBUG)
 
-dagshub_token = os.getenv("DAGSHUB_PAT")
+console_handler = logging.StreamHandler()
+console_handler.setLevel(logging.DEBUG)
 
-os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+file_handler = logging.FileHandler('app.log')
+file_handler.setLevel(logging.ERROR)
 
-dagshub_url = "https://dagshub.com"
-repo_owner = "datascience-1100"
-repo_name = "End-to-End-Employee-Attrition-Rate-Project"
+formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+console_handler.setFormatter(formatter)
+file_handler.setFormatter(formatter)
+
+logger.addHandler(console_handler)
+logger.addHandler(file_handler)
 
 # Set up MLflow tracking URI
+dagshub_url = "dagshub.com"
+repo_owner = "datascience-1100"
+repo_name = "End-to-End-Employee-Attrition-Rate-Project"
 mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
-# Load the model
-model_path = 'best_model.pkl'
+
+# Load the model from MLflow Model Registry
+model_name = "final-model"
+model_version = "1"  # Specify the correct version
+
 try:
-    with open(model_path, 'rb') as file:
-        model = pickle.load(file)
+    model_uri = f"models:/{model_name}/{model_version}"
+    model = mlflow.pyfunc.load_model(model_uri=model_uri)
+    logger.info(f"Model loaded successfully from {model_uri}")
 except Exception as e:
-    print(f"Error loading model: {e}")
+    logger.error(f"Error loading model: {e}")
     raise
 
 app = Flask(__name__)
@@ -42,7 +54,6 @@ model_columns = [
     'dept_hr', 'dept_management', 'dept_marketing',
     'dept_product_mng', 'dept_sales', 'dept_support',
     'dept_technical']
-
 
 @app.route('/')
 def home():

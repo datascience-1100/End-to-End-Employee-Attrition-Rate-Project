@@ -1,0 +1,1226 @@
+2024-08-28 21:08:36,461 - app - ERROR - Error loading model: RESOURCE_DOES_NOT_EXIST: Response: {'error_code': 'RESOURCE_DOES_NOT_EXIST'}
+2024-08-28 21:08:49,729 - app - ERROR - Error loading model: RESOURCE_DOES_NOT_EXIST: Response: {'error_code': 'RESOURCE_DOES_NOT_EXIST'}
+2024-08-28 21:10:47,275 - app - ERROR - Error loading model: RESOURCE_DOES_NOT_EXIST: Response: {'error_code': 'RESOURCE_DOES_NOT_EXIST'}
+2024-08-28 21:10:53,177 - app - ERROR - Error loading model: RESOURCE_DOES_NOT_EXIST: Response: {'error_code': 'RESOURCE_DOES_NOT_EXIST'}
+2024-08-28 21:11:33,943 - app - ERROR - Error loading model: API request to endpoint /api/2.0/mlflow/model-versions/get-download-uri failed with error code 404 != 200. Response body: '<!DOCTYPE html>
+<html lang="en-US">
+  <head data-suburl="">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    
+    <meta name="referrer" content="no-referrer"/>
+    <meta name="_csrf" content="CXHSnkt8NsqsmurUXznfwIUqnAc6MTcyNDg5Mzg5NjA3NTgwOTk1Mg"/>
+    <meta name="_suburl" content=""/>
+    <meta name="_appversion" content="9caea374a543d2063e68253804aa5b7aca591043" />
+    <meta name="_bareRepo" content=""/>
+
+    
+    
+  <script>(function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PGHTMDN');</script>
+
+    
+
+    
+    
+      
+    
+    
+  
+    <title>Page Not Found · DAGsHub</title>
+    <meta name="description"
+          content="DagsHub is where people build machine learning projects. DagsHub helps AI teams build better models and manage their data effectively."/>
+  
+  
+  <meta property="og:url" content="https://dagshub.com/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="DagsHub">
+  <meta property="og:title" content="DagsHub: The Home for Machine Learning Collaboration">
+  <meta property="og:description"
+        content="DagsHub is where people build machine learning projects. DagsHub helps AI teams build better models and manage their data effectively.">
+  <meta property="og:image" content="https://dagshub.com/img/open_graph/dagshub-logo.jpg"/>
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <meta property="twitter:site" content="@TheRealDagsHub">
+  <meta property="twitter:creator" content="@TheRealDagsHub">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="DagsHub: The Home for Machine Learning Collaboration">
+  <meta property="twitter:description"
+        content="DagsHub is where people build machine learning projects. DagsHub helps AI teams build better models and manage their data effectively.">
+  <meta property="twitter:image:src" content="https://dagshub.com/img/open_graph/dagshub-logo.jpg">
+  <meta property="twitter:image:width" content="1200">
+  <meta property="twitter:image:height" content="630">
+
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "name": "DagsHub",
+        "url": "https://dagshub.com/",
+        "sameAs": [
+            "https://www.facebook.com/DagsHub/",
+            "https://twitter.com/TheRealDagsHub/",
+            "https://linkedin.com/company/dagshub/"
+        ],
+        "potentialAction": {
+        "@type": "SearchAction",
+        "description": "Search for data science projects on DagsHub.",
+        "target": "https://dagshub.com/explore/repos?q={search_term}",
+        "query-input": "required name=search_term"
+        }
+    }
+  </script>
+
+
+    
+
+    <link rel="shortcut icon" href="/img/favicon-black.svg"/>
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css"
+        integrity="sha512-3icgkoIO5qm2D4bGSUkPqeQ96LS8+ukJC7Eqhl1H5B2OJMEnFqLmNDxXVmtV/eq5M65tTDkUYS/Q0P4gvZv+yA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
+
+    <link rel="stylesheet" href="/assets/octicons-4.3.0/octicons.min.css">
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="preload" href="/css/themes/default/assets/fonts/brand-icons.woff2" as="font"
+          type="font/woff2" crossorigin/>
+    <link rel="preload" href="/css/themes/default/assets/fonts/icons.woff2" as="font" type="font/woff2"
+          crossorigin/>
+    <link rel="preload" href="/assets/fontawesome-5.15.3/webfonts/fa-solid-900.woff2" as="font"
+          type="font/woff2" crossorigin/>
+
+    
+    <link rel="stylesheet" href="/css/semantic-2.4.2.min.css">
+
+    
+    <link rel="stylesheet" href="/css/build/dagshub.css?v=9caea374a543d2063e68253804aa5b7aca591043">
+    <link rel="stylesheet" href="/css/gogs.css?v=9caea374a543d2063e68253804aa5b7aca591043">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Lato:300,400,700,900|Jaldi|Open+Sans&display=swap" rel="stylesheet">
+
+    <noscript>
+      <style>
+        .dropdown:hover > .menu {
+          display: block;
+        }
+
+        .ui.secondary.menu .dropdown.item > .menu {
+          margin-top: 0;
+        }
+      </style>
+    </noscript>
+    <script src="/js/semantic-2.4.2.min.js"></script>
+
+    
+    
+      <link rel="stylesheet" href="/css/build/static_dagshub.css?v=9caea374a543d2063e68253804aa5b7aca591043">
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+      <link href='https://fonts.googleapis.com/css?family=Fira Code:wght@300;400;500;600;700;900' rel='stylesheet'>
+    
+
+    <meta name="theme-color" content="#103037">
+
+    
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+
+    
+  </head>
+  <body>
+
+    
+
+
+
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGHTMDN"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+
+
+
+
+<div class="ui tiny modal" id="contact-modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Contact us
+  </div>
+  <form id="contact-form" class="ui form content" action="contact_form" method="post">
+    <input type="hidden" name="_csrf" value="CXHSnkt8NsqsmurUXznfwIUqnAc6MTcyNDg5Mzg5NjA3NTgwOTk1Mg">
+    <div class="required field">
+      <label for="user_name">Your email address</label>
+      <input name="email" type="email" value=""
+             placeholder="tony@stark-industries.com" required>
+    </div>
+    <div class="required field">
+      <label for="subject">Subject</label>
+      <input name="subject" value="Hi DagsHub, let's talk" placeholder="What would you like to talk about?" required>
+    </div>
+    <div class="required field">
+      <textarea class="autosize" name="body" rows="7" ></textarea>
+    </div>
+    
+      <script type="text/javascript">
+        var myRecaptchaListeners = {
+          callAllListeners: function(listeners) {
+            return () => listeners.forEach((f) => f());
+          },
+          successListeners: [],
+          expireListeners: [],
+        };
+        contactFormCaptchaCallback = myRecaptchaListeners.callAllListeners(myRecaptchaListeners.successListeners);
+        contactFormCaptchaExpired = myRecaptchaListeners.callAllListeners(myRecaptchaListeners.expireListeners);
+      </script>
+      <div class="g-recaptcha field"
+           data-sitekey="6Lf0Z7gUAAAAAKCsW1V-PqN58BcBNAUxe-oIU3nw"
+           data-callback="contactFormCaptchaCallback"
+           data-expired-callback="contactFormCaptchaExpired"></div>
+    
+    <input type="hidden" name="page"/>
+    <input type="hidden" name="referring_page"/>
+    <input type="hidden" name="referrer"/>
+    <button class="ui positive center aligned labeled icon button" id="send-contact-request-btn">
+      Send
+      <i class="checkmark icon"></i>
+    </button>
+    
+      <script type="text/javascript">
+        (function() {
+          const submitBtn = document.getElementById('send-contact-request-btn');
+          onExpire = () => submitBtn.style.display = 'none';
+          onExpire();
+          myRecaptchaListeners.successListeners.push(() => {
+            submitBtn.style.display = 'block';
+          });
+          myRecaptchaListeners.expireListeners.push(onExpire);
+        })();
+      </script>
+    
+    <div class="ui hidden dimmer inverted">
+      <div class="ui loader"></div>
+      <div class="ui hidden positive message">
+        <p>Thank you! We'll be in touch ASAP.</p>
+      </div>
+      <div class="ui hidden negative message">
+        <p>Something went wrong, please try again or contact us directly at <a
+                  href="mailto:contact@dagshub.com">contact@dagshub.com</a></p>
+      </div>
+    </div>
+  </form>
+  <script>
+    (function() {
+      const $contactModal = $('#contact-modal');
+      const $contactForm = $('#contact-form');
+      const $dimmer = $contactForm.find('.dimmer');
+      const $loader = $dimmer.find('.loader');
+      const $okMsg = $dimmer.find('.positive');
+      const $errorMsg = $dimmer.find('.negative');
+
+      $contactForm.find('input[name=page]').val(document.URL);
+      $contactForm.find('input[name=referring_page]').val(new URL(document.URL).searchParams.get('referring_page'));
+      $contactForm.find('input[name=referrer]').val(document.referrer);
+
+      
+      $contactModal.modal({
+        onShow: () => {
+          $dimmer.dimmer('hide');
+          $loader.transition('fade in', 0);
+          $okMsg.transition('fade out', 0);
+          $errorMsg.transition('fade out', 0);
+        }
+      });
+
+      $contactForm.submit((e) => {
+        e.preventDefault();
+
+        $dimmer.dimmer('show');
+
+        function hideModal() {
+          setTimeout(() => {
+            $contactModal.modal('hide');
+          }, 3000);
+        }
+
+        
+        const loaderToMessage = function(targetMsg = $okMsg, afterMsg = hideModal) {
+          $loader.transition('fade out');
+          targetMsg.transition('fade in');
+          if (afterMsg) afterMsg();
+        };
+
+        $.ajax({
+          url: $contactForm.attr('action'),
+          method: 'post',
+          data: $contactForm.serialize(),
+          success: () => loaderToMessage(),
+          error: e => {
+            console.error(e);
+            
+            loaderToMessage($errorMsg, null);
+          }
+        });
+        
+        
+        
+        
+      });
+    })();
+  </script>
+  <div class="ui secondary segment">
+    Or if you want, you can join our community at <a href="https://discord.com/invite/9gU36Y6"
+                                                     class="ui basic discord icon"><i class="discord grey icon big"></i></a>
+  </div>
+</div>
+
+
+
+    
+      
+
+<div class="mobile dagshub-navbar">
+    <div class="line-divider"></div>
+
+
+
+
+  
+    
+      <div class="primary center button" style="margin-bottom: 10px;">
+        <a  id="sign-up-navbar-mobile" data-analytics-event="Navbar_Register_Clicked"
+            href="/user/sign_up?redirect_to=%2fdatascience-1100%2fEnd-to-End-Employee-Attrition-Rate-Project%2fmodels%2fapi%2f2.0%2fmlflow%2fmodel-versions%2fget-download-uri
+
+">
+          Register
+        </a>
+      </div>
+    
+      <div class="secondary center button">
+        <a id="sign-in-navbar-mobile" data-analytics-event="Navbar_Login_Clicked"
+           href="/user/login?redirect_to=%2fdatascience-1100%2fEnd-to-End-Employee-Attrition-Rate-Project%2fmodels%2fapi%2f2.0%2fmlflow%2fmodel-versions%2fget-download-uri
+
+">
+          Login
+        </a>
+      </div>
+  
+  <div class="line-divider"></div>
+  
+  
+    <div class="subtitle">Resources</div>
+    <a class="navbar-item"
+       href="/docs" onclick="trackAnalyticsEvent('Resources_Docs_Clicked')">Docs</a>
+    <a class="navbar-item" href="/blog" onclick="trackAnalyticsEvent('Resources_Blog_Clicked')">Blog</a>
+    <a class="navbar-item" data-analytics-event="Resources_Datasets_Clicked" href="/datasets">Datasets</a>
+    <a class="navbar-item" data-analytics-event="Resources_Glossary_Clicked" href="/glossary">Glossary</a>
+    <a class="navbar-item" href="/blog/tag/case-study" onclick="trackAnalyticsEvent('Resources_Case_Studies_Clicked')">Case Studies</a>
+    <a class="navbar-item" href="/blog/tag/tutorials" onclick="trackAnalyticsEvent('Resources_Tutorials_Clicked')">Tutorials &amp; Webinars</a>
+    
+      <div class="line-divider"></div>
+      <div class="subtitle">Product</div>
+      <a class="navbar-item" tabindex="0" href="/data-engine">Data Engine</a>
+      <a class="navbar-item" tabindex="0" href="/use-cases/llm">LLMs</a>
+      <a class="navbar-item" tabindex="0" href="/product">Platform</a>
+      <a class="navbar-item" tabindex="0" href="/enterprise">Enterprise</a>
+    
+    <div class="line-divider"></div>
+    <a class="navbar-item" href="/pricing">Pricing</a>
+  
+  <a class="navbar-item" href="/explore/repos">Explore</a>
+  <div class="line-divider"></div>
+  <a class="navbar-item" href="https://discord.com/invite/9gU36Y6" onclick="trackAnalyticsEvent('DiscordIcon_Clicked')">
+    <img src="/assets/social_icons/discord.svg" aria-label="Connect to our Discord channel">
+    <span>Connect to our Discord channel</span>
+  </a>
+    
+</div>
+<div class="pusher">
+<div class="ui full height">
+  <noscript>This website works better with JavaScript</noscript>
+  
+    <div class=" navbar-container">
+      <div id="menu-container" class="dagshub-navbar ">
+        <div class="left-menu">
+          <div class="fixed-content">
+            <a href="https://dagshub.com/" tabindex="0">
+              
+              <img width="34" height="30" alt="DagsHub navbar logo" aria-label="DagsHub Home" class="navbar-logo"
+                   src="/img/favicon.svg">
+              
+            </a>
+            <form class="search-bar-container" action="/explore/repos">
+                <input class="search-bar" name="q" value="" aria-label="Search public projects"
+                       placeholder="Search public repositories..." tabindex="0" autocomplete="off">
+            </form>
+          </div>
+          
+          
+            <div class="dropdown navbar-item" tabindex="0">
+              Resources &nbsp; <img class="flip" src="/assets/chevron-icon.svg">
+                <div class="submenu">
+                  <a href="/docs" tabindex="0" onclick="trackAnalyticsEvent('Resources_Docs_Clicked')">Docs</a>
+                  <a href="/blog" tabindex="0" onclick="trackAnalyticsEvent('Resources_Blog_Clicked')">Blog</a>
+                  <a href="/datasets" tabindex="0" data-analytics-event="Resources_Datasets_Clicked">Datasets</a>
+                  <a href="/glossary" tabindex="0" data-analytics-event="Resources_Glossary_Clicked">Glossary</a>
+                  <a href="/blog/tag/case-study" tabindex="0" onclick="trackAnalyticsEvent('Resources_Case_Studies_Clicked')">Case Studies</a>
+                  <a href="/blog/tag/tutorials" tabindex="0" onclick="trackAnalyticsEvent('Resources_Tutorials_Clicked')">Tutorials &amp; Webinars</a>
+                </div>
+            </div>
+          
+          <a class="navbar-item" tabindex="0"
+             href="/explore/repos" onclick="trackAnalyticsEvent('ExploreTab_Clicked')">Explore</a>
+          
+            <a class="navbar-item" tabindex="0" href="/pricing">Pricing</a>
+          
+          <div class="dropdown navbar-item" tabindex="0">
+            Product &nbsp; <img class="flip" src="/assets/chevron-icon.svg">
+            <div class="submenu">
+              <a class="navbar-item" tabindex="0" href="/data-engine">Data Engine</a>
+              <a class="navbar-item" tabindex="0" href="/use-cases/llm">LLMs</a>
+              <a class="navbar-item" tabindex="0" href="/product">Platform</a>
+              <a class="navbar-item" tabindex="0" href="/enterprise">Enterprise</a>
+            </div>
+          </div>
+          
+        
+        </div>
+        
+          <input type="checkbox" id="menu-toggle" style="display: none;" tabindex="0">
+          <label id="menu-toggle-label" for="menu-toggle"><img src="/assets/menu-open.svg"></label>
+          <div id="menu-close-label" style="display: none;"><img src="/assets/x.svg"></div>
+          <div id="menu-open-label" style="display: none;"><img src="/assets/menu-open.svg"></div>
+        
+        <div class="right-menu">
+            <a aria-label="join our discord"
+               class="navbar-icon dagshub-tooltip"
+               tabindex="0"
+               href="https://discord.com/invite/9gU36Y6" onclick="trackAnalyticsEvent('DiscordIcon_Clicked')">
+              <img src="/assets/social_icons/discord.svg" aria-label="Connect to our Discord channel">
+              <span>Connect to Dagshub Discord channel</span>
+            </a>
+            
+              
+                <div class="primary button">
+                  <a id="sign-up-navbar" data-analytics-event="Navbar_Register_Clicked"
+                     href="/user/sign_up?redirect_to=%2fdatascience-1100%2fEnd-to-End-Employee-Attrition-Rate-Project%2fmodels%2fapi%2f2.0%2fmlflow%2fmodel-versions%2fget-download-uri
+
+">
+                    Register
+                  </a>
+                </div>
+              
+              <a id="sign-in-navbar" class="secondary button"
+                 data-analytics-event="Navbar_Login_Clicked"
+                 href="/user/login?redirect_to=%2fdatascience-1100%2fEnd-to-End-Employee-Attrition-Rate-Project%2fmodels%2fapi%2f2.0%2fmlflow%2fmodel-versions%2fget-download-uri
+
+">
+                Login
+              </a>
+            
+        </div>
+      </div>
+    </div>
+  
+
+    
+
+<div class="ui container center">
+  <p style="margin-top: 100px"><img src="/img/404.png" alt="404"/></p>
+  <div class="ui divider"></div>
+  <br>
+  
+  <p>
+    If you think this is an error, please report it on our
+    <strong>
+      <a href="https://discord.com/invite/9gU36Y6">Discord support channel <i class="discord icon"></i></a>
+    </strong>
+  </p>
+    Or, contact us at <a href="mailto:support@dagshub.com">support@dagshub.com</a>.</p>
+  <br><br>
+  Provide this support ID: <strong>6cb80737-efb5-4db4-be76-e51284b9e0e6</strong>
+</div>
+
+
+</div>
+<footer>
+  <div class="ui footer">
+      <div class="dagshub-footer">
+          <a href="https://dagshub.com/">
+            <img alt="footer DagsHub logo" id="footer-logo" class="ui centered image" aria-label="Dagshub home"
+                           src="/img/footerlogo.svg">
+          </a>
+          <div id="footer-social" class="">
+            <a aria-label="DagsHub on Twitter" class="icon-link"
+               rel="nofollow" target="_blank"
+               href="https://twitter.com/TheRealDAGsHub">
+              <i class="twitter large icon"></i>
+            </a>
+            <a aria-label="DagsHub on YouTube" class="icon-link"
+               rel="nofollow" target="_blank"
+               href="https://youtube.com/c/dagshub">
+              <i class="youtube large icon"></i>
+            </a>
+            <a aria-label="DagsHub on LinkedIn" class="icon-link"
+               rel="nofollow" target="_blank"
+               href="https://www.linkedin.com/company/dagshub">
+              <i class="linkedin large icon"></i>
+            </a>
+            <a aria-label="join our Discord" class="icon-link"
+               rel="nofollow" target="_blank"
+               href="https://discord.com/invite/9gU36Y6">
+              
+              <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.2415 2.18566C18.7257 1.49015 17.1003 0.977731 15.4007 0.684245C15.3698 0.678581 15.3389 0.692736 15.3229 0.721047C15.1139 1.09286 14.8823 1.57791 14.7202 1.95916C12.8922 1.6855 11.0736 1.6855 9.28318 1.95916C9.12099 1.56944 8.88103 1.09286 8.67104 0.721047C8.6551 0.693681 8.62418 0.679525 8.59323 0.684245C6.89465 0.976793 5.26918 1.48921 3.75245 2.18566C3.73932 2.19133 3.72807 2.20077 3.7206 2.21303C0.637438 6.8192 -0.207169 11.3122 0.207167 15.7494C0.209041 15.7711 0.221228 15.7919 0.238101 15.8051C2.27228 17.2989 4.24273 18.2058 6.17659 18.807C6.20754 18.8164 6.24034 18.8051 6.26003 18.7796C6.71749 18.1549 7.12527 17.4962 7.4749 16.8035C7.49553 16.7629 7.47584 16.7148 7.43366 16.6988C6.78686 16.4534 6.17097 16.1542 5.57852 15.8145C5.53166 15.7872 5.52791 15.7201 5.57102 15.688C5.69569 15.5946 5.8204 15.4974 5.93944 15.3993C5.96098 15.3814 5.99099 15.3776 6.01631 15.3889C9.90842 17.1659 14.1221 17.1659 17.9683 15.3889C17.9936 15.3766 18.0236 15.3804 18.0461 15.3983C18.1652 15.4965 18.2898 15.5946 18.4154 15.688C18.4585 15.7201 18.4557 15.7872 18.4089 15.8145C17.8164 16.1608 17.2005 16.4534 16.5528 16.6978C16.5106 16.7139 16.4919 16.7629 16.5125 16.8035C16.8696 17.4952 17.2774 18.1539 17.7264 18.7787C17.7452 18.8051 17.7789 18.8164 17.8099 18.807C19.7531 18.2058 21.7235 17.2989 23.7577 15.8051C23.7755 15.7919 23.7868 15.7721 23.7887 15.7503C24.2845 10.6204 22.9581 6.16429 20.2724 2.21397C20.2659 2.20077 20.2546 2.19133 20.2415 2.18566ZM8.05612 13.0476C6.88433 13.0476 5.91881 11.9718 5.91881 10.6506C5.91881 9.32943 6.86561 8.25364 8.05612 8.25364C9.25598 8.25364 10.2122 9.33887 10.1934 10.6506C10.1934 11.9718 9.2466 13.0476 8.05612 13.0476ZM15.9585 13.0476C14.7867 13.0476 13.8212 11.9718 13.8212 10.6506C13.8212 9.32943 14.768 8.25364 15.9585 8.25364C17.1584 8.25364 18.1145 9.33887 18.0958 10.6506C18.0958 11.9718 17.1584 13.0476 15.9585 13.0476Z"/>
+              </svg>
+            </a>
+          </div>
+        <div class="links">
+          <a class="footer-item" rel="noopener noreferrer" href="/about">Our Story</a>
+          <a class="footer-item" rel="noopener noreferrer" href="/careers">Careers</a>
+              
+          <a id="merch-store" class="footer-item" rel="noopener noreferrer"
+             href="https://teespring.com/stores/dagshub">Merch</a>
+          <a class="footer-item" id="contact-us-footer" href="javascript:">Contact Us</a>
+          <script>
+            (function() {
+              const $contactModal = $('#contact-modal');
+              const $contactForm = $contactModal.find('#contact-form');
+              $contactModal.modal('attach events', '#contact-us-footer', 'show');
+              $('#contact-us-footer').on('click', () => {
+                $contactForm.attr('action', 'contact_form');
+              });
+            })();
+          </script>
+              
+                <a class="footer-item" rel="noopener noreferrer" href="/enterprise">Enterprise</a>
+                <a class="footer-item" rel="noopener noreferrer" href="/pricing">Pricing</a>
+              
+        </div>
+          <h2>The home for data science collaboration</h2>
+          <div class="legal">
+            <p>© Copyright Dagshub 2024</p>
+            <div class="">
+              <a class="footer-item" rel="noopener noreferrer" href="/terms">Terms of Service</a>
+              <a class="footer-item" rel="noopener noreferrer" href="/privacy">Privacy Policy</a>
+            </div>
+          </div>
+
+        </div>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+
+  </div>
+</footer>
+
+
+</div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/libs/emojify-1.1.0.min.js"></script>
+<script src="/js/libs/clipboard-1.5.9.min.js"></script>
+
+
+
+<script src="/js/gogs.js?v=9caea374a543d2063e68253804aa5b7aca591043"></script>
+<script src="/js/dagshub.js?v=9caea374a543d2063e68253804aa5b7aca591043"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+
+
+'
+2024-08-28 21:13:28,019 - app - ERROR - Error loading model: API request to endpoint /api/2.0/mlflow/model-versions/get-download-uri failed with error code 404 != 200. Response body: '<!DOCTYPE html>
+<html lang="en-US">
+  <head data-suburl="">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    
+    
+      <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    
+    <meta name="referrer" content="no-referrer"/>
+    <meta name="_csrf" content="5_Bgt6ZoHwvQnOmUapIqXNg3HQE6MTcyNDg5NDAxMDE0MjA1MzcxMQ"/>
+    <meta name="_suburl" content=""/>
+    <meta name="_appversion" content="9caea374a543d2063e68253804aa5b7aca591043" />
+    <meta name="_bareRepo" content=""/>
+
+    
+    
+  <script>(function(w, d, s, l, i) {
+      w[l] = w[l] || [];
+      w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      });
+      var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s),
+        dl = l != 'dataLayer' ? '&l=' + l : '';
+      j.async = true;
+      j.src =
+        'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
+      f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-PGHTMDN');</script>
+
+    
+
+    
+    
+      
+    
+    
+  
+    <title>Page Not Found · DAGsHub</title>
+    <meta name="description"
+          content="DagsHub is where people build machine learning projects. DagsHub helps AI teams build better models and manage their data effectively."/>
+  
+  
+  <meta property="og:url" content="https://dagshub.com/"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:site_name" content="DagsHub">
+  <meta property="og:title" content="DagsHub: The Home for Machine Learning Collaboration">
+  <meta property="og:description"
+        content="DagsHub is where people build machine learning projects. DagsHub helps AI teams build better models and manage their data effectively.">
+  <meta property="og:image" content="https://dagshub.com/img/open_graph/dagshub-logo.jpg"/>
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  
+  <meta property="twitter:site" content="@TheRealDagsHub">
+  <meta property="twitter:creator" content="@TheRealDagsHub">
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:title" content="DagsHub: The Home for Machine Learning Collaboration">
+  <meta property="twitter:description"
+        content="DagsHub is where people build machine learning projects. DagsHub helps AI teams build better models and manage their data effectively.">
+  <meta property="twitter:image:src" content="https://dagshub.com/img/open_graph/dagshub-logo.jpg">
+  <meta property="twitter:image:width" content="1200">
+  <meta property="twitter:image:height" content="630">
+
+  <script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "WebSite",
+        "name": "DagsHub",
+        "url": "https://dagshub.com/",
+        "sameAs": [
+            "https://www.facebook.com/DagsHub/",
+            "https://twitter.com/TheRealDagsHub/",
+            "https://linkedin.com/company/dagshub/"
+        ],
+        "potentialAction": {
+        "@type": "SearchAction",
+        "description": "Search for data science projects on DagsHub.",
+        "target": "https://dagshub.com/explore/repos?q={search_term}",
+        "query-input": "required name=search_term"
+        }
+    }
+  </script>
+
+
+    
+
+    <link rel="shortcut icon" href="/img/favicon-black.svg"/>
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.css"
+        integrity="sha512-3icgkoIO5qm2D4bGSUkPqeQ96LS8+ukJC7Eqhl1H5B2OJMEnFqLmNDxXVmtV/eq5M65tTDkUYS/Q0P4gvZv+yA=="
+        crossorigin="anonymous"
+        referrerpolicy="no-referrer" />
+
+
+    <link rel="stylesheet" href="/assets/octicons-4.3.0/octicons.min.css">
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    <link rel="preload" href="/css/themes/default/assets/fonts/brand-icons.woff2" as="font"
+          type="font/woff2" crossorigin/>
+    <link rel="preload" href="/css/themes/default/assets/fonts/icons.woff2" as="font" type="font/woff2"
+          crossorigin/>
+    <link rel="preload" href="/assets/fontawesome-5.15.3/webfonts/fa-solid-900.woff2" as="font"
+          type="font/woff2" crossorigin/>
+
+    
+    <link rel="stylesheet" href="/css/semantic-2.4.2.min.css">
+
+    
+    <link rel="stylesheet" href="/css/build/dagshub.css?v=9caea374a543d2063e68253804aa5b7aca591043">
+    <link rel="stylesheet" href="/css/gogs.css?v=9caea374a543d2063e68253804aa5b7aca591043">
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa|Lato:300,400,700,900|Jaldi|Open+Sans&display=swap" rel="stylesheet">
+
+    <noscript>
+      <style>
+        .dropdown:hover > .menu {
+          display: block;
+        }
+
+        .ui.secondary.menu .dropdown.item > .menu {
+          margin-top: 0;
+        }
+      </style>
+    </noscript>
+    <script src="/js/semantic-2.4.2.min.js"></script>
+
+    
+    
+      <link rel="stylesheet" href="/css/build/static_dagshub.css?v=9caea374a543d2063e68253804aa5b7aca591043">
+      <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+      <link href='https://fonts.googleapis.com/css?family=Fira Code:wght@300;400;500;600;700;900' rel='stylesheet'>
+    
+
+    <meta name="theme-color" content="#103037">
+
+    
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+
+
+    
+  </head>
+  <body>
+
+    
+
+
+
+  <noscript>
+    <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PGHTMDN"
+            height="0" width="0" style="display:none;visibility:hidden"></iframe>
+  </noscript>
+
+
+
+
+<div class="ui tiny modal" id="contact-modal">
+  <i class="close icon"></i>
+  <div class="header">
+    Contact us
+  </div>
+  <form id="contact-form" class="ui form content" action="contact_form" method="post">
+    <input type="hidden" name="_csrf" value="5_Bgt6ZoHwvQnOmUapIqXNg3HQE6MTcyNDg5NDAxMDE0MjA1MzcxMQ">
+    <div class="required field">
+      <label for="user_name">Your email address</label>
+      <input name="email" type="email" value=""
+             placeholder="tony@stark-industries.com" required>
+    </div>
+    <div class="required field">
+      <label for="subject">Subject</label>
+      <input name="subject" value="Hi DagsHub, let's talk" placeholder="What would you like to talk about?" required>
+    </div>
+    <div class="required field">
+      <textarea class="autosize" name="body" rows="7" ></textarea>
+    </div>
+    
+      <script type="text/javascript">
+        var myRecaptchaListeners = {
+          callAllListeners: function(listeners) {
+            return () => listeners.forEach((f) => f());
+          },
+          successListeners: [],
+          expireListeners: [],
+        };
+        contactFormCaptchaCallback = myRecaptchaListeners.callAllListeners(myRecaptchaListeners.successListeners);
+        contactFormCaptchaExpired = myRecaptchaListeners.callAllListeners(myRecaptchaListeners.expireListeners);
+      </script>
+      <div class="g-recaptcha field"
+           data-sitekey="6Lf0Z7gUAAAAAKCsW1V-PqN58BcBNAUxe-oIU3nw"
+           data-callback="contactFormCaptchaCallback"
+           data-expired-callback="contactFormCaptchaExpired"></div>
+    
+    <input type="hidden" name="page"/>
+    <input type="hidden" name="referring_page"/>
+    <input type="hidden" name="referrer"/>
+    <button class="ui positive center aligned labeled icon button" id="send-contact-request-btn">
+      Send
+      <i class="checkmark icon"></i>
+    </button>
+    
+      <script type="text/javascript">
+        (function() {
+          const submitBtn = document.getElementById('send-contact-request-btn');
+          onExpire = () => submitBtn.style.display = 'none';
+          onExpire();
+          myRecaptchaListeners.successListeners.push(() => {
+            submitBtn.style.display = 'block';
+          });
+          myRecaptchaListeners.expireListeners.push(onExpire);
+        })();
+      </script>
+    
+    <div class="ui hidden dimmer inverted">
+      <div class="ui loader"></div>
+      <div class="ui hidden positive message">
+        <p>Thank you! We'll be in touch ASAP.</p>
+      </div>
+      <div class="ui hidden negative message">
+        <p>Something went wrong, please try again or contact us directly at <a
+                  href="mailto:contact@dagshub.com">contact@dagshub.com</a></p>
+      </div>
+    </div>
+  </form>
+  <script>
+    (function() {
+      const $contactModal = $('#contact-modal');
+      const $contactForm = $('#contact-form');
+      const $dimmer = $contactForm.find('.dimmer');
+      const $loader = $dimmer.find('.loader');
+      const $okMsg = $dimmer.find('.positive');
+      const $errorMsg = $dimmer.find('.negative');
+
+      $contactForm.find('input[name=page]').val(document.URL);
+      $contactForm.find('input[name=referring_page]').val(new URL(document.URL).searchParams.get('referring_page'));
+      $contactForm.find('input[name=referrer]').val(document.referrer);
+
+      
+      $contactModal.modal({
+        onShow: () => {
+          $dimmer.dimmer('hide');
+          $loader.transition('fade in', 0);
+          $okMsg.transition('fade out', 0);
+          $errorMsg.transition('fade out', 0);
+        }
+      });
+
+      $contactForm.submit((e) => {
+        e.preventDefault();
+
+        $dimmer.dimmer('show');
+
+        function hideModal() {
+          setTimeout(() => {
+            $contactModal.modal('hide');
+          }, 3000);
+        }
+
+        
+        const loaderToMessage = function(targetMsg = $okMsg, afterMsg = hideModal) {
+          $loader.transition('fade out');
+          targetMsg.transition('fade in');
+          if (afterMsg) afterMsg();
+        };
+
+        $.ajax({
+          url: $contactForm.attr('action'),
+          method: 'post',
+          data: $contactForm.serialize(),
+          success: () => loaderToMessage(),
+          error: e => {
+            console.error(e);
+            
+            loaderToMessage($errorMsg, null);
+          }
+        });
+        
+        
+        
+        
+      });
+    })();
+  </script>
+  <div class="ui secondary segment">
+    Or if you want, you can join our community at <a href="https://discord.com/invite/9gU36Y6"
+                                                     class="ui basic discord icon"><i class="discord grey icon big"></i></a>
+  </div>
+</div>
+
+
+
+    
+      
+
+<div class="mobile dagshub-navbar">
+    <div class="line-divider"></div>
+
+
+
+
+  
+    
+      <div class="primary center button" style="margin-bottom: 10px;">
+        <a  id="sign-up-navbar-mobile" data-analytics-event="Navbar_Register_Clicked"
+            href="/user/sign_up?redirect_to=%2fdatascience-1100%2fEnd-to-End-Employee-Attrition-Rate-Project%2fmodels%2fapi%2f2.0%2fmlflow%2fmodel-versions%2fget-download-uri
+
+">
+          Register
+        </a>
+      </div>
+    
+      <div class="secondary center button">
+        <a id="sign-in-navbar-mobile" data-analytics-event="Navbar_Login_Clicked"
+           href="/user/login?redirect_to=%2fdatascience-1100%2fEnd-to-End-Employee-Attrition-Rate-Project%2fmodels%2fapi%2f2.0%2fmlflow%2fmodel-versions%2fget-download-uri
+
+">
+          Login
+        </a>
+      </div>
+  
+  <div class="line-divider"></div>
+  
+  
+    <div class="subtitle">Resources</div>
+    <a class="navbar-item"
+       href="/docs" onclick="trackAnalyticsEvent('Resources_Docs_Clicked')">Docs</a>
+    <a class="navbar-item" href="/blog" onclick="trackAnalyticsEvent('Resources_Blog_Clicked')">Blog</a>
+    <a class="navbar-item" data-analytics-event="Resources_Datasets_Clicked" href="/datasets">Datasets</a>
+    <a class="navbar-item" data-analytics-event="Resources_Glossary_Clicked" href="/glossary">Glossary</a>
+    <a class="navbar-item" href="/blog/tag/case-study" onclick="trackAnalyticsEvent('Resources_Case_Studies_Clicked')">Case Studies</a>
+    <a class="navbar-item" href="/blog/tag/tutorials" onclick="trackAnalyticsEvent('Resources_Tutorials_Clicked')">Tutorials &amp; Webinars</a>
+    
+      <div class="line-divider"></div>
+      <div class="subtitle">Product</div>
+      <a class="navbar-item" tabindex="0" href="/data-engine">Data Engine</a>
+      <a class="navbar-item" tabindex="0" href="/use-cases/llm">LLMs</a>
+      <a class="navbar-item" tabindex="0" href="/product">Platform</a>
+      <a class="navbar-item" tabindex="0" href="/enterprise">Enterprise</a>
+    
+    <div class="line-divider"></div>
+    <a class="navbar-item" href="/pricing">Pricing</a>
+  
+  <a class="navbar-item" href="/explore/repos">Explore</a>
+  <div class="line-divider"></div>
+  <a class="navbar-item" href="https://discord.com/invite/9gU36Y6" onclick="trackAnalyticsEvent('DiscordIcon_Clicked')">
+    <img src="/assets/social_icons/discord.svg" aria-label="Connect to our Discord channel">
+    <span>Connect to our Discord channel</span>
+  </a>
+    
+</div>
+<div class="pusher">
+<div class="ui full height">
+  <noscript>This website works better with JavaScript</noscript>
+  
+    <div class=" navbar-container">
+      <div id="menu-container" class="dagshub-navbar ">
+        <div class="left-menu">
+          <div class="fixed-content">
+            <a href="https://dagshub.com/" tabindex="0">
+              
+              <img width="34" height="30" alt="DagsHub navbar logo" aria-label="DagsHub Home" class="navbar-logo"
+                   src="/img/favicon.svg">
+              
+            </a>
+            <form class="search-bar-container" action="/explore/repos">
+                <input class="search-bar" name="q" value="" aria-label="Search public projects"
+                       placeholder="Search public repositories..." tabindex="0" autocomplete="off">
+            </form>
+          </div>
+          
+          
+            <div class="dropdown navbar-item" tabindex="0">
+              Resources &nbsp; <img class="flip" src="/assets/chevron-icon.svg">
+                <div class="submenu">
+                  <a href="/docs" tabindex="0" onclick="trackAnalyticsEvent('Resources_Docs_Clicked')">Docs</a>
+                  <a href="/blog" tabindex="0" onclick="trackAnalyticsEvent('Resources_Blog_Clicked')">Blog</a>
+                  <a href="/datasets" tabindex="0" data-analytics-event="Resources_Datasets_Clicked">Datasets</a>
+                  <a href="/glossary" tabindex="0" data-analytics-event="Resources_Glossary_Clicked">Glossary</a>
+                  <a href="/blog/tag/case-study" tabindex="0" onclick="trackAnalyticsEvent('Resources_Case_Studies_Clicked')">Case Studies</a>
+                  <a href="/blog/tag/tutorials" tabindex="0" onclick="trackAnalyticsEvent('Resources_Tutorials_Clicked')">Tutorials &amp; Webinars</a>
+                </div>
+            </div>
+          
+          <a class="navbar-item" tabindex="0"
+             href="/explore/repos" onclick="trackAnalyticsEvent('ExploreTab_Clicked')">Explore</a>
+          
+            <a class="navbar-item" tabindex="0" href="/pricing">Pricing</a>
+          
+          <div class="dropdown navbar-item" tabindex="0">
+            Product &nbsp; <img class="flip" src="/assets/chevron-icon.svg">
+            <div class="submenu">
+              <a class="navbar-item" tabindex="0" href="/data-engine">Data Engine</a>
+              <a class="navbar-item" tabindex="0" href="/use-cases/llm">LLMs</a>
+              <a class="navbar-item" tabindex="0" href="/product">Platform</a>
+              <a class="navbar-item" tabindex="0" href="/enterprise">Enterprise</a>
+            </div>
+          </div>
+          
+        
+        </div>
+        
+          <input type="checkbox" id="menu-toggle" style="display: none;" tabindex="0">
+          <label id="menu-toggle-label" for="menu-toggle"><img src="/assets/menu-open.svg"></label>
+          <div id="menu-close-label" style="display: none;"><img src="/assets/x.svg"></div>
+          <div id="menu-open-label" style="display: none;"><img src="/assets/menu-open.svg"></div>
+        
+        <div class="right-menu">
+            <a aria-label="join our discord"
+               class="navbar-icon dagshub-tooltip"
+               tabindex="0"
+               href="https://discord.com/invite/9gU36Y6" onclick="trackAnalyticsEvent('DiscordIcon_Clicked')">
+              <img src="/assets/social_icons/discord.svg" aria-label="Connect to our Discord channel">
+              <span>Connect to Dagshub Discord channel</span>
+            </a>
+            
+              
+                <div class="primary button">
+                  <a id="sign-up-navbar" data-analytics-event="Navbar_Register_Clicked"
+                     href="/user/sign_up?redirect_to=%2fdatascience-1100%2fEnd-to-End-Employee-Attrition-Rate-Project%2fmodels%2fapi%2f2.0%2fmlflow%2fmodel-versions%2fget-download-uri
+
+">
+                    Register
+                  </a>
+                </div>
+              
+              <a id="sign-in-navbar" class="secondary button"
+                 data-analytics-event="Navbar_Login_Clicked"
+                 href="/user/login?redirect_to=%2fdatascience-1100%2fEnd-to-End-Employee-Attrition-Rate-Project%2fmodels%2fapi%2f2.0%2fmlflow%2fmodel-versions%2fget-download-uri
+
+">
+                Login
+              </a>
+            
+        </div>
+      </div>
+    </div>
+  
+
+    
+
+<div class="ui container center">
+  <p style="margin-top: 100px"><img src="/img/404.png" alt="404"/></p>
+  <div class="ui divider"></div>
+  <br>
+  
+  <p>
+    If you think this is an error, please report it on our
+    <strong>
+      <a href="https://discord.com/invite/9gU36Y6">Discord support channel <i class="discord icon"></i></a>
+    </strong>
+  </p>
+    Or, contact us at <a href="mailto:support@dagshub.com">support@dagshub.com</a>.</p>
+  <br><br>
+  Provide this support ID: <strong>3eb51e13-5493-4996-9339-547ae4e8cbcf</strong>
+</div>
+
+
+</div>
+<footer>
+  <div class="ui footer">
+      <div class="dagshub-footer">
+          <a href="https://dagshub.com/">
+            <img alt="footer DagsHub logo" id="footer-logo" class="ui centered image" aria-label="Dagshub home"
+                           src="/img/footerlogo.svg">
+          </a>
+          <div id="footer-social" class="">
+            <a aria-label="DagsHub on Twitter" class="icon-link"
+               rel="nofollow" target="_blank"
+               href="https://twitter.com/TheRealDAGsHub">
+              <i class="twitter large icon"></i>
+            </a>
+            <a aria-label="DagsHub on YouTube" class="icon-link"
+               rel="nofollow" target="_blank"
+               href="https://youtube.com/c/dagshub">
+              <i class="youtube large icon"></i>
+            </a>
+            <a aria-label="DagsHub on LinkedIn" class="icon-link"
+               rel="nofollow" target="_blank"
+               href="https://www.linkedin.com/company/dagshub">
+              <i class="linkedin large icon"></i>
+            </a>
+            <a aria-label="join our Discord" class="icon-link"
+               rel="nofollow" target="_blank"
+               href="https://discord.com/invite/9gU36Y6">
+              
+              <svg width="24" height="19" viewBox="0 0 24 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M20.2415 2.18566C18.7257 1.49015 17.1003 0.977731 15.4007 0.684245C15.3698 0.678581 15.3389 0.692736 15.3229 0.721047C15.1139 1.09286 14.8823 1.57791 14.7202 1.95916C12.8922 1.6855 11.0736 1.6855 9.28318 1.95916C9.12099 1.56944 8.88103 1.09286 8.67104 0.721047C8.6551 0.693681 8.62418 0.679525 8.59323 0.684245C6.89465 0.976793 5.26918 1.48921 3.75245 2.18566C3.73932 2.19133 3.72807 2.20077 3.7206 2.21303C0.637438 6.8192 -0.207169 11.3122 0.207167 15.7494C0.209041 15.7711 0.221228 15.7919 0.238101 15.8051C2.27228 17.2989 4.24273 18.2058 6.17659 18.807C6.20754 18.8164 6.24034 18.8051 6.26003 18.7796C6.71749 18.1549 7.12527 17.4962 7.4749 16.8035C7.49553 16.7629 7.47584 16.7148 7.43366 16.6988C6.78686 16.4534 6.17097 16.1542 5.57852 15.8145C5.53166 15.7872 5.52791 15.7201 5.57102 15.688C5.69569 15.5946 5.8204 15.4974 5.93944 15.3993C5.96098 15.3814 5.99099 15.3776 6.01631 15.3889C9.90842 17.1659 14.1221 17.1659 17.9683 15.3889C17.9936 15.3766 18.0236 15.3804 18.0461 15.3983C18.1652 15.4965 18.2898 15.5946 18.4154 15.688C18.4585 15.7201 18.4557 15.7872 18.4089 15.8145C17.8164 16.1608 17.2005 16.4534 16.5528 16.6978C16.5106 16.7139 16.4919 16.7629 16.5125 16.8035C16.8696 17.4952 17.2774 18.1539 17.7264 18.7787C17.7452 18.8051 17.7789 18.8164 17.8099 18.807C19.7531 18.2058 21.7235 17.2989 23.7577 15.8051C23.7755 15.7919 23.7868 15.7721 23.7887 15.7503C24.2845 10.6204 22.9581 6.16429 20.2724 2.21397C20.2659 2.20077 20.2546 2.19133 20.2415 2.18566ZM8.05612 13.0476C6.88433 13.0476 5.91881 11.9718 5.91881 10.6506C5.91881 9.32943 6.86561 8.25364 8.05612 8.25364C9.25598 8.25364 10.2122 9.33887 10.1934 10.6506C10.1934 11.9718 9.2466 13.0476 8.05612 13.0476ZM15.9585 13.0476C14.7867 13.0476 13.8212 11.9718 13.8212 10.6506C13.8212 9.32943 14.768 8.25364 15.9585 8.25364C17.1584 8.25364 18.1145 9.33887 18.0958 10.6506C18.0958 11.9718 17.1584 13.0476 15.9585 13.0476Z"/>
+              </svg>
+            </a>
+          </div>
+        <div class="links">
+          <a class="footer-item" rel="noopener noreferrer" href="/about">Our Story</a>
+          <a class="footer-item" rel="noopener noreferrer" href="/careers">Careers</a>
+              
+          <a id="merch-store" class="footer-item" rel="noopener noreferrer"
+             href="https://teespring.com/stores/dagshub">Merch</a>
+          <a class="footer-item" id="contact-us-footer" href="javascript:">Contact Us</a>
+          <script>
+            (function() {
+              const $contactModal = $('#contact-modal');
+              const $contactForm = $contactModal.find('#contact-form');
+              $contactModal.modal('attach events', '#contact-us-footer', 'show');
+              $('#contact-us-footer').on('click', () => {
+                $contactForm.attr('action', 'contact_form');
+              });
+            })();
+          </script>
+              
+                <a class="footer-item" rel="noopener noreferrer" href="/enterprise">Enterprise</a>
+                <a class="footer-item" rel="noopener noreferrer" href="/pricing">Pricing</a>
+              
+        </div>
+          <h2>The home for data science collaboration</h2>
+          <div class="legal">
+            <p>© Copyright Dagshub 2024</p>
+            <div class="">
+              <a class="footer-item" rel="noopener noreferrer" href="/terms">Terms of Service</a>
+              <a class="footer-item" rel="noopener noreferrer" href="/privacy">Privacy Policy</a>
+            </div>
+          </div>
+
+        </div>
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+
+  </div>
+</footer>
+
+
+</div>
+</body>
+
+
+
+
+
+
+
+
+
+
+
+<script src="/js/libs/emojify-1.1.0.min.js"></script>
+<script src="/js/libs/clipboard-1.5.9.min.js"></script>
+
+
+
+<script src="/js/gogs.js?v=9caea374a543d2063e68253804aa5b7aca591043"></script>
+<script src="/js/dagshub.js?v=9caea374a543d2063e68253804aa5b7aca591043"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
+
+
+'
+2024-08-28 21:13:46,370 - app - ERROR - Error loading model: The following failures occurred while downloading one or more artifacts from https://dagshub.com/datascience-1100/End-to-End-Employee-Attrition-Rate-Project.mlflow/api/2.0/mlflow-artifacts/artifacts/9c76833922e447ad985600c22509700b/cc686641b04349a89833524bce458742/artifacts/model_artifact.pkl:
+##### File  #####
+[Errno 2] No such file or directory: 'C:\\Users\\Subha\\AppData\\Local\\Temp\\tmpgi7b0ls0\\'
+2024-08-28 21:13:57,430 - app - ERROR - Error loading model: Registered Model with name=final-model not found
+2024-08-28 21:14:27,748 - app - ERROR - Error loading model: Registered Model with name=final-model not found
+2024-08-28 21:14:59,330 - app - ERROR - Error loading model: Registered Model with name=final-model not found
