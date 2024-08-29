@@ -47,6 +47,13 @@ file_handler.setFormatter(formatter)
 logger.addHandler(console_handler)
 logger.addHandler(file_handler)
 
+def create_directory(directory_path):
+    if not os.path.exists(directory_path):
+        os.makedirs(directory_path)
+        logger.info(f"Created directory: {directory_path}")
+    else:
+        logger.info(f"Directory already exists: {directory_path}")
+
 def load_model(model_path):
     try:
         logger.info(f"Loading model from {model_path}")
@@ -86,15 +93,23 @@ def evaluate_model(model, X_test, y_test, model_name, experiment_name):
             plt.title(f"{model_name} Confusion Matrix")
             plt.ylabel('Actual label')
             plt.xlabel('Predicted label')
+
+            # Ensure directory exists
+            conf_matrix_dir = "outputs/confusion_matrix"
+            create_directory(conf_matrix_dir)
             
             # Save confusion matrix plot
-            conf_matrix_path = f"outputs/confusion_matrix/{model_name}_confusion_matrix.png"
+            conf_matrix_path = f"{conf_matrix_dir}/{model_name}_confusion_matrix.png"
             plt.savefig(conf_matrix_path)
-            plt.close()  # Close the plot to avoid memory issues
             
             # Log classification report
             report = classification_report(y_test, y_pred, output_dict=True)
-            report_path = f"outputs/classification_report/{model_name}_classification_report.json"
+            
+            # Ensure directory exists
+            report_dir = "outputs/classification_report"
+            create_directory(report_dir)
+            
+            report_path = f"{report_dir}/{model_name}_classification_report.json"
             with open(report_path, 'w') as f:
                 json.dump(report, f, indent=3)
             
@@ -136,22 +151,25 @@ def process_model_evaluation():
         metrics_svm = evaluate_model(svm_clf, X_test, y_test, 'SVM', 'SVM_Evaluation')
         
         # Save evaluation metrics locally
-        metrics_file_path_logistic = 'outputs/metrics_logistic.json'
+        metrics_dir = "outputs"
+        create_directory(metrics_dir)
+        
+        metrics_file_path_logistic = f'{metrics_dir}/metrics_logistic.json'
         with open(metrics_file_path_logistic, 'w') as file:
             json.dump(metrics_logistic, file, indent=4)
         logger.info("Logistic Regression metrics saved")
 
-        metrics_file_path_decision_tree = 'outputs/metrics_decision_tree.json'
+        metrics_file_path_decision_tree = f'{metrics_dir}/metrics_decision_tree.json'
         with open(metrics_file_path_decision_tree, 'w') as file:
             json.dump(metrics_decision_tree, file, indent=4)  
         logger.info("Decision Tree metrics saved")
 
-        metrics_file_path_xgboost = 'outputs/metrics_xgboost.json'
+        metrics_file_path_xgboost = f'{metrics_dir}/metrics_xgboost.json'
         with open(metrics_file_path_xgboost, 'w') as file:
             json.dump(metrics_xgboost, file, indent=4)  
         logger.info("XGBoost metrics saved")
 
-        metrics_file_path_svm = 'outputs/metrics_svm.json'
+        metrics_file_path_svm = f'{metrics_dir}/metrics_svm.json'
         with open(metrics_file_path_svm, 'w') as file:
             json.dump(metrics_svm, file, indent=4)  
         logger.info("SVM metrics saved")
