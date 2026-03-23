@@ -1,3 +1,6 @@
+
+Deployed Website- https://end-to-end-employee-attrition-rate-zv8f.onrender.com/
+
 Project Overview:
 
 This project aims to predict whether an employee will leave the company or not, assisting the HR department at Salifort Motors in identifying factors contributing to employee attrition and predicting which employees are likely to leave. These insights will help HR improve employee satisfaction and retention, thereby reducing the costs and time associated with hiring new employees.
